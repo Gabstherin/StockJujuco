@@ -178,7 +178,7 @@ npm run dev
 
 - Repositorio GitHub: https://github.com/Gabstherin/StockJujuco
 - Quadro de Atividades (Board): https://github.com/users/Gabstherin/projects/1/views/1
-- Video de Demonstracao AC01: (link do video)
+- Video de Demonstracao AC01: Anexado diretamente na entrega da atividade no Google Classroom (Stockjujuco_test.mp4)
 
 ---
 
