@@ -1,95 +1,96 @@
-# 🍫 StockJujuco
+# StockJujuco
 
-> Controle simples de produtos, ingredientes, estoque e precificação para confeitaria autônoma.
-
-![Juju Co.](https://img.shields.io/badge/Juju%20Co.-Confeitaria%20Artesanal-E91E8C?style=flat-square)
-![AC01](https://img.shields.io/badge/AC01-Catálogo%20de%20Produtos-A8D5BA?style=flat-square)
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow?style=flat-square)
+> Controle simples de produtos, ingredientes, estoque e precificacao para confeitaria autonoma.
 
 ---
 
-## 📌 Sobre o Projeto
+## Sobre o Projeto
 
-O **StockJujuco** é um sistema web desenvolvido para auxiliar a **Juju Co.**, uma confeitaria artesanal operada por uma única pessoa. O sistema permite organizar o catálogo de produtos vendidos e, nas próximas evoluções, cadastrar ingredientes, compor receitas, calcular custos e apoiar a precificação.
+O **StockJujuco** e um sistema web desenvolvido para auxiliar a **Juju Co.**, uma confeitaria artesanal operada por uma unica pessoa. O sistema permite organizar o catalogo de produtos vendidos e, nas proximas evolucoes, cadastrar ingredientes, compor receitas, calcular custos e apoiar a precificacao.
 
 ### Produtos iniciais
-- 🍫 Brownie - Chocolate Tradicional (R$ 12,00)
-- 🍮 Brownie - Caramelo Salgado (R$ 14,00)
-- 🥜 Brownie - Chocolate com Amendoim (R$ 13,00)
+- Brownie - Chocolate Tradicional (R$ 12,00)
+- Brownie - Caramelo Salgado (R$ 14,00)
+- Brownie - Chocolate com Amendoim (R$ 13,00)
 
 ---
 
-## 🏗️ Arquitetura
+## Arquitetura
+
+O projeto segue a arquitetura de tres camadas:
 
 ```
-┌─────────────────┐     HTTP/REST     ┌──────────────────┐     SQLAlchemy     ┌──────────┐
-│   FRONT-END     │ ◄───────────────► │    BACK-END       │ ◄────────────────► │  BANCO   │
-│  React + Vite   │                   │ Python + FastAPI  │                    │  SQLite  │
-│  localhost:5173 │                   │  localhost:8000   │                    │  .db     │
-└─────────────────┘                   └──────────────────┘                    └──────────┘
++-----------------+     HTTP/REST     +------------------+     SQLAlchemy     +----------+
+|    FRONT-END    | <---------------> |     BACK-END     | <----------------> |  BANCO   |
+|  React + Vite   |                   | Python + FastAPI |                    |  SQLite  |
+|  localhost:5173 |                   |  localhost:8000  |                    |   .db    |
++-----------------+                   +------------------+                    +----------+
 ```
 
 ---
 
-## 🛠️ Tecnologias
+## Tecnologias
 
-| Camada | Tecnologia | Versão |
+| Camada | Tecnologia | Versao |
 |--------|-----------|--------|
 | Front-end | React | 18.x |
 | Front-end | Vite | 5.x |
 | Front-end | React Router DOM | 6.x |
 | Front-end | Axios | 1.x |
 | Back-end | Python | 3.10+ |
-| Back-end | FastAPI | 0.111 |
+| Back-end | FastAPI | 0.111+ |
 | Back-end | SQLAlchemy | 2.x |
 | Back-end | Pydantic | 2.x |
-| Back-end | Uvicorn | 0.30 |
-| Banco | SQLite | 3.x |
+| Back-end | Uvicorn | 0.30+ |
+| Banco de dados | SQLite | 3.x |
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 StockJujuco/
-├── backend/
-│   ├── main.py          # FastAPI app + endpoints
-│   ├── database.py      # Configuração SQLite + seed inicial
-│   ├── models.py        # Modelo SQLAlchemy (Produto)
-│   ├── schemas.py       # Schemas Pydantic
-│   ├── requirements.txt # Dependências Python
-│   └── stockjujuco.db   # Banco de dados (gerado automaticamente)
-├── frontend/
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── package.json
-│   └── src/
-│       ├── main.jsx
-│       ├── App.jsx
-│       ├── index.css       # Estilos globais (identidade Juju Co.)
-│       ├── components/
-│       │   ├── Navbar.jsx
-│       │   ├── ProdutoCard.jsx
-│       │   └── ProdutoForm.jsx
-│       └── pages/
-│           ├── Home.jsx
-│           └── Produtos.jsx
-└── README.md
+|-- backend/
+|   |-- main.py          # Aplicacao FastAPI e endpoints
+|   |-- database.py      # Conexao SQLite e seed inicial
+|   |-- models.py        # Modelo SQLAlchemy (Produto)
+|   |-- schemas.py       # Schemas Pydantic para validacao
+|   |-- requirements.txt # Dependencias Python
+|   `-- stockjujuco.db   # Banco de dados SQLite
+|-- frontend/
+|   |-- index.html
+|   |-- vite.config.js
+|   |-- package.json
+|   `-- src/
+|       |-- main.jsx
+|       |-- App.jsx
+|       |-- index.css       # Identidade visual Juju Co.
+|       |-- components/
+|       |   |-- Navbar.jsx
+|       |   |-- ProdutoCard.jsx
+|       |   `-- ProdutoForm.jsx
+|       `-- pages/
+|           |-- Home.jsx
+|           `-- Produtos.jsx
+|-- demo/
+|   `-- index.html       # Versao de demonstracao autonoma
+|-- .gitignore
+`-- README.md
 ```
 
 ---
 
-## 🚀 Como Executar
+## Como Executar
 
-### Pré-requisitos
+### Pre-requisitos
 - Python 3.10 ou superior
 - Node.js 18 ou superior
 - pip
 
-### 1. Clonar o repositório
+### 1. Clonar o repositorio
 
 ```bash
-git clone https://github.com/<seu-usuario>/StockJujuco.git
+git clone https://github.com/Gabstherin/StockJujuco.git
 cd StockJujuco
 ```
 
@@ -98,20 +99,20 @@ cd StockJujuco
 ```bash
 cd backend
 
-# Criar ambiente virtual (recomendado)
+# Criar ambiente virtual
 python -m venv venv
 venv\Scripts\activate      # Windows
-# ou: source venv/bin/activate  # Linux/Mac
+# source venv/bin/activate # Linux/Mac
 
-# Instalar dependências
+# Instalar dependencias
 pip install -r requirements.txt
 
-# Iniciar o servidor
+# Iniciar servidor FastAPI
 uvicorn main:app --reload
 ```
 
-O servidor estará disponível em: **http://localhost:8000**  
-Documentação automática (Swagger): **http://localhost:8000/docs**
+- API disponivel em: **http://localhost:8000**
+- Documentacao interativa (Swagger): **http://localhost:8000/docs**
 
 ### 3. Executar o Front-end
 
@@ -120,26 +121,26 @@ Em um novo terminal:
 ```bash
 cd frontend
 
-# Instalar dependências
+# Instalar dependencias
 npm install
 
-# Iniciar o servidor de desenvolvimento
+# Iniciar servidor de desenvolvimento
 npm run dev
 ```
 
-A aplicação estará disponível em: **http://localhost:5173**
+- Aplicacao disponivel em: **http://localhost:5173**
 
 ---
 
-## 🔌 API Endpoints
+## Endpoints da API
 
-| Método | Endpoint | Descrição |
+| Metodo | Endpoint | Descricao |
 |--------|----------|-----------|
-| GET | `/` | Health check |
-| GET | `/produtos` | Listar todos os produtos |
-| POST | `/produtos` | Cadastrar novo produto |
+| GET | `/` | Verificacao de integridade (Health check) |
+| GET | `/produtos` | Listar todos os produtos cadastrados |
+| POST | `/produtos` | Cadastrar novo produto no catalogo |
 
-### Exemplo de Payload (POST /produtos)
+### Exemplo de Requisicao (POST /produtos)
 
 ```json
 {
@@ -147,25 +148,25 @@ A aplicação estará disponível em: **http://localhost:5173**
   "sabor": "Nutella com Oreo",
   "categoria": "Brownie",
   "preco_venda": 15.00,
-  "descricao": "Brownie recheado com Nutella e pedaços de Oreo",
+  "descricao": "Brownie artesanal recheado com Nutella e pedacos de Oreo",
   "ativo": true
 }
 ```
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap de Entregas
 
-| Entrega | Data | Funcionalidade | Status |
-|---------|------|----------------|--------|
-| AC01 | 14/09/2026 | Catálogo de produtos | ✅ Em andamento |
-| AC02 | 13/10/2026 | Ingredientes e receitas | 🔜 Planejado |
-| AC03 | 08/11/2026 | Custos e precificação | 🔜 Planejado |
-| Final | 22/11/2026 | Estoque e dashboard | 🔜 Planejado |
+| Entrega | Data | Funcionalidade Principal | Status |
+|---------|------|--------------------------|--------|
+| AC01 | 14/09/2026 | Catalogo de produtos | Em andamento |
+| AC02 | 13/10/2026 | Ingredientes e receitas | Planejado |
+| AC03 | 08/11/2026 | Custos e precificacao | Planejado |
+| Final | 22/11/2026 | Estoque e visao consolidada | Planejado |
 
 ---
 
-## 👩‍💻 Integrantes
+## Integrantes
 
 | Nome | RA |
 |------|----|
@@ -173,12 +174,12 @@ A aplicação estará disponível em: **http://localhost:5173**
 
 ---
 
-## 📎 Links
+## Links do Projeto
 
-- 🔗 **GitHub**: https://github.com/Gabstherin/StockJujuco
-- 📋 **Board do Projeto**: https://github.com/users/Gabstherin/projects/1/views/1
-- 🎥 **Vídeo AC01**: (link do vídeo)
+- Repositorio GitHub: https://github.com/Gabstherin/StockJujuco
+- Quadro de Atividades (Board): https://github.com/users/Gabstherin/projects/1/views/1
+- Video de Demonstracao AC01: (link do video)
 
 ---
 
-> Desenvolvido para a disciplina de Projeto de Software — Impacta Tecnologia, 2026.
+Desenvolvido para a disciplina de Projeto de Software - Faculdade Impacta Tecnologia, 2026.
