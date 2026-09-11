@@ -166,6 +166,32 @@ npm run dev
 
 ---
 
+## Tarefas da Sprint e Backlog (Issues)
+
+Todas as atividades estao mapeadas no [Quadro de Projetos](https://github.com/users/Gabstherin/projects/1/views/1) e vinculadas as Issues do repositorio:
+
+### AC01 - Concluidas
+- [#1](https://github.com/Gabstherin/StockJujuco/issues/1) Criar repositorio GitHub do StockJujuco e documentacao inicial
+- [#2](https://github.com/Gabstherin/StockJujuco/issues/2) Configurar banco SQLite e tabela produtos com seed inicial
+- [#3](https://github.com/Gabstherin/StockJujuco/issues/3) Desenvolver API FastAPI com endpoints GET e POST /produtos
+- [#4](https://github.com/Gabstherin/StockJujuco/issues/4) Desenvolver interface React + Vite com identidade visual Juju Co.
+- [#5](https://github.com/Gabstherin/StockJujuco/issues/5) Implementar formulario de cadastro de novo produto
+- [#6](https://github.com/Gabstherin/StockJujuco/issues/6) Integrar front-end com a API e garantir persistencia dos dados
+- [#7](https://github.com/Gabstherin/StockJujuco/issues/7) Gravar video de demonstracao da funcionalidade da AC01
+
+### AC01 - Em Andamento / Em Teste
+- [#8](https://github.com/Gabstherin/StockJujuco/issues/8) Realizar submissao da AC01 no Google Classroom
+
+### Backlog das Proximas Sprints
+- [#9](https://github.com/Gabstherin/StockJujuco/issues/9) Cadastrar ingredientes da confeitaria (AC02)
+- [#10](https://github.com/Gabstherin/StockJujuco/issues/10) Compor receitas associando ingredientes aos produtos (AC02)
+- [#11](https://github.com/Gabstherin/StockJujuco/issues/11) Calcular custo automatico da receita por produto (AC03)
+- [#12](https://github.com/Gabstherin/StockJujuco/issues/12) Definir margem de lucro e apoio a precificacao sugerida (AC03)
+- [#13](https://github.com/Gabstherin/StockJujuco/issues/13) Controle simples de estoque - entradas e saidas (Final)
+- [#14](https://github.com/Gabstherin/StockJujuco/issues/14) Dashboard consolidado para a confeiteira (Final)
+
+---
+
 ## Integrantes
 
 | Nome | RA |
