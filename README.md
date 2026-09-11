@@ -170,7 +170,7 @@ npm run dev
 
 | Nome | RA |
 |------|----|
-| Gabriela Andrade | (Preencher RA) |
+| Gabriela Andrade | 2500734 |
 
 ---
 
