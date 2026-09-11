@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <title>StockJujuco | Juju Co. Confeitaria</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --rosa: #E91E8C; --rosa-claro: #F8BBD9; --rosa-medio: #F48FB1;
+      --verde: #A8D5BA; --verde-escuro: #4CAF82;
+      --branco: #fff; --creme: #FFF8F5; --cinza: #F5F5F5;
+      --texto: #333; --texto-leve: #666;
+      --sombra: 0 2px 12px rgba(233,30,140,.10);
+      --sombra-hover: 0 6px 24px rgba(233,30,140,.20);
+      --radius: 12px; --radius-sm: 8px;
+    }
+    body { font-family:'Poppins',sans-serif; background:var(--creme); color:var(--texto); min-height:100vh; }
+
+    /* NAVBAR */
+    .navbar {
+      background:var(--branco); border-bottom:3px solid var(--rosa-claro);
+      padding:0 2rem; display:flex; align-items:center; justify-content:space-between;
+      height:68px; position:sticky; top:0; z-index:100;
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+    }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; cursor:pointer; }
+    .logo-circle {
+      width:40px; height:40px; border-radius:50%;
+      background:linear-gradient(135deg,var(--rosa),var(--rosa-medio));
+      display:flex; align-items:center; justify-content:center;
+      color:#fff; font-weight:700; font-size:16px; letter-spacing:-1px;
+    }
+    .brand-name { font-size:1.2rem; font-weight:700; color:var(--rosa); }
+    .brand-sub { font-size:.65rem; color:var(--texto-leve); display:block; }
+    nav ul { display:flex; gap:.5rem; list-style:none; }
+    nav a {
+      text-decoration:none; color:var(--texto-leve); font-weight:500; font-size:.9rem;
+      padding:.4rem 1rem; border-radius:var(--radius-sm); transition:.2s;
+    }
+    nav a:hover, nav a.active { background:var(--rosa-claro); color:var(--rosa); }
+
+    /* PAGES */
+    .page { display:none; max-width:1100px; margin:0 auto; padding:2rem 1.5rem; }
+    .page.active { display:block; }
+
+    /* HOME */
+    .hero { text-align:center; padding:4rem 1rem; }
+    .logo-big {
+      width:120px; height:120px; border-radius:50%;
+      background:linear-gradient(135deg,var(--rosa),var(--rosa-medio));
+      display:flex; align-items:center; justify-content:center;
+      color:#fff; font-size:2.5rem; font-weight:800; margin:0 auto 1.5rem;
+      box-shadow:var(--sombra-hover); letter-spacing:-2px;
+    }
+    .hero h1 { font-size:2.5rem; font-weight:700; color:var(--rosa); margin-bottom:.5rem; }
+    .hero p { color:var(--texto-leve); margin-bottom:.4rem; }
+    .hero em { font-size:.9rem; color:var(--rosa-medio); display:block; margin-bottom:2.5rem; }
+    .feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem; margin-top:2.5rem; }
+    .feature-card {
+      background:var(--branco); border-radius:var(--radius); padding:1.5rem;
+      text-align:center; box-shadow:var(--sombra); border-top:3px solid var(--verde);
+      transition:.2s;
+    }
+    .feature-card:hover { transform:translateY(-3px); box-shadow:var(--sombra-hover); }
+    .feature-card .icon { font-size:2rem; margin-bottom:.75rem; }
+    .feature-card h3 { font-size:.95rem; font-weight:600; margin-bottom:.3rem; }
+    .feature-card p { font-size:.8rem; color:var(--texto-leve); }
+    .badge-soon { background:var(--cinza); color:var(--texto-leve); font-size:.65rem; padding:2px 8px; border-radius:20px; font-weight:500; margin-top:.5rem; display:inline-block; }
+    .badge-ok { background:var(--rosa-claro); color:var(--rosa); font-size:.65rem; padding:2px 8px; border-radius:20px; font-weight:500; margin-top:.5rem; display:inline-block; }
+
+    /* BTN */
+    .btn-primary {
+      background:linear-gradient(135deg,var(--rosa),#c2185b); color:#fff;
+      border:none; padding:.8rem 2rem; border-radius:var(--radius);
+      font-family:'Poppins',sans-serif; font-size:1rem; font-weight:600;
+      cursor:pointer; transition:.2s; display:inline-block;
+    }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:var(--sombra-hover); }
+    .btn-primary:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+    .btn-secondary {
+      background:var(--cinza); color:var(--texto-leve); border:none;
+      padding:.7rem 1.5rem; border-radius:var(--radius-sm);
+      font-family:'Poppins',sans-serif; font-size:.9rem; font-weight:500; cursor:pointer; transition:.2s;
+    }
+    .btn-secondary:hover { background:#e0e0e0; }
+
+    /* PRODUTOS PAGE */
+    .page-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; flex-wrap:wrap; gap:1rem; }
+    .page-header h1 { font-size:1.8rem; font-weight:700; }
+    .page-header h1 span { color:var(--rosa); }
+    .page-count { font-size:.85rem; color:var(--texto-leve); }
+    .produtos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
+
+    /* CARD */
+    .card {
+      background:var(--branco); border-radius:var(--radius); padding:1.5rem;
+      box-shadow:var(--sombra); transition:.2s; border-left:4px solid var(--rosa);
+      display:flex; flex-direction:column; gap:.5rem;
+    }
+    .card:hover { transform:translateY(-4px); box-shadow:var(--sombra-hover); }
+    .card-header { display:flex; justify-content:space-between; align-items:flex-start; }
+    .card-nome { font-size:1rem; font-weight:600; }
+    .card-sabor { font-size:.85rem; color:var(--rosa); font-weight:500; }
+    .cat-badge { background:var(--verde); color:var(--verde-escuro); font-size:.7rem; font-weight:600; padding:3px 10px; border-radius:20px; white-space:nowrap; }
+    .card-desc { font-size:.82rem; color:var(--texto-leve); line-height:1.5; flex:1; }
+    .card-footer { display:flex; justify-content:space-between; align-items:center; margin-top:.5rem; padding-top:.75rem; border-top:1px solid var(--cinza); }
+    .card-preco { font-size:1.3rem; font-weight:700; color:var(--rosa); }
+    .status { display:flex; align-items:center; gap:5px; font-size:.75rem; font-weight:500; }
+    .dot { width:8px; height:8px; border-radius:50%; }
+    .dot.ativo { background:var(--verde-escuro); }
+    .label-ativo { color:var(--verde-escuro); }
+
+    /* LOADING / ERROR / EMPTY */
+    .center { text-align:center; padding:3rem; color:var(--texto-leve); }
+    .spinner { width:40px; height:40px; border:4px solid var(--rosa-claro); border-top-color:var(--rosa); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 1rem; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .error-banner { background:#FFEBEE; color:#c62828; border:1px solid #ef9a9a; border-radius:var(--radius-sm); padding:1rem; margin-bottom:1.5rem; font-size:.85rem; }
+
+    /* MODAL */
+    .overlay { position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:200; padding:1rem; backdrop-filter:blur(2px); }
+    .overlay.open { display:flex; }
+    .modal { background:var(--branco); border-radius:var(--radius); width:100%; max-width:540px; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+    .modal-header { display:flex; align-items:center; justify-content:space-between; padding:1.5rem 1.5rem 1rem; border-bottom:1px solid var(--cinza); }
+    .modal-header h2 { font-size:1.2rem; font-weight:700; }
+    .modal-close { background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--texto-leve); padding:.2rem .5rem; border-radius:var(--radius-sm); transition:.2s; }
+    .modal-close:hover { background:var(--cinza); }
+    .form { padding:1.5rem; display:flex; flex-direction:column; gap:1.2rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .form-group { display:flex; flex-direction:column; gap:.4rem; }
+    .form-group label { font-size:.85rem; font-weight:600; }
+    .req { color:var(--rosa); margin-left:2px; }
+    .form-control { border:1.5px solid #E0E0E0; border-radius:var(--radius-sm); padding:.6rem .9rem; font-family:'Poppins',sans-serif; font-size:.9rem; outline:none; transition:.2s; }
+    .form-control:focus { border-color:var(--rosa); box-shadow:0 0 0 3px rgba(233,30,140,.1); }
+    .form-control.err { border-color:#e53935; }
+    textarea.form-control { resize:vertical; min-height:80px; }
+    .form-check { display:flex; align-items:center; gap:.5rem; cursor:pointer; }
+    .form-check input { width:18px; height:18px; accent-color:var(--rosa); cursor:pointer; }
+    .field-err { font-size:.75rem; color:#e53935; }
+    .form-actions { display:flex; gap:.75rem; justify-content:flex-end; padding-top:.5rem; border-top:1px solid var(--cinza); }
+
+    /* TOAST */
+    .toast { position:fixed; bottom:2rem; right:2rem; background:var(--verde-escuro); color:#fff; padding:1rem 1.5rem; border-radius:var(--radius); font-size:.9rem; font-weight:500; box-shadow:0 4px 20px rgba(0,0,0,.2); z-index:300; display:none; align-items:center; gap:.5rem; animation:slideIn .3s ease; }
+    .toast.show { display:flex; }
+    @keyframes slideIn { from { transform:translateX(120%); opacity:0; } to { transform:translateX(0); opacity:1; } }
+
+    @media(max-width:640px) { .form-row { grid-template-columns:1fr; } .navbar { padding:0 1rem; } .hero h1 { font-size:1.8rem; } .toast { right:1rem; left:1rem; bottom:1rem; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="brand" onclick="showPage('home')">
+    <div class="logo-circle">JJ</div>
+    <div>
+      <span class="brand-name">StockJujuco</span>
+      <span class="brand-sub">Juju Co. Confeitaria</span>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#" id="nav-home" class="active" onclick="showPage('home');return false;">Início</a></li>
+      <li><a href="#" id="nav-produtos" onclick="showPage('produtos');return false;">Produtos</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="logo-big">JJ</div>
+    <h1>StockJujuco</h1>
+    <p>Controle de produtos e estoque para confeitaria artesanal</p>
+    <em>✨ Feito com carinho para a Juju Co.</em>
+    <button class="btn-primary" onclick="showPage('produtos')">🍰 Ver Catálogo de Produtos</button>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">🍫</div>
+        <h3>Catálogo de Produtos</h3>
+        <p>Cadastre e consulte seus produtos com preço e categoria.</p>
+        <span class="badge-ok">Disponível ✓</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🥚</div>
+        <h3>Ingredientes e Receitas</h3>
+        <p>Associe ingredientes aos produtos e controle receitas.</p>
+        <span class="badge-soon">Em breve — AC02</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">💰</div>
+        <h3>Custos e Precificação</h3>
+        <p>Calcule custo por receita e sugira preço de venda.</p>
+        <span class="badge-soon">Em breve — AC03</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📦</div>
+        <h3>Estoque</h3>
+        <p>Controle entrada e saída de ingredientes em estoque.</p>
+        <span class="badge-soon">Em breve — Final</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUTOS -->
+<div id="page-produtos" class="page">
+  <div class="page-header">
+    <div>
+      <h1><span>Catálogo</span> de Produtos</h1>
+      <p class="page-count" id="count-label">Carregando...</p>
+    </div>
+    <button class="btn-primary" onclick="openModal()">+ Novo Produto</button>
+  </div>
+  <div id="error-area"></div>
+  <div id="produtos-area">
+    <div class="center"><div class="spinner"></div><p>Carregando produtos...</p></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>🍫 Novo Produto</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <form class="form" id="produto-form" onsubmit="submitForm(event)">
+      <div id="form-error" class="error-banner" style="display:none"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome <span class="req">*</span></label>
+          <input class="form-control" id="f-nome" placeholder="Ex: Brownie" maxlength="100" />
+          <span class="field-err" id="e-nome"></span>
+        </div>
+        <div class="form-group">
+          <label>Sabor <span class="req">*</span></label>
+          <input class="form-control" id="f-sabor" placeholder="Ex: Caramelo Salgado" maxlength="100" />
+          <span class="field-err" id="e-sabor"></span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Categoria <span class="req">*</span></label>
+          <select class="form-control" id="f-categoria">
+            <option>Brownie</option><option>Bolo</option><option>Brigadeiro</option>
+            <option>Cookie</option><option>Trufa</option><option>Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preço de Venda (R$) <span class="req">*</span></label>
+          <input class="form-control" id="f-preco" type="number" min="0" step="0.01" placeholder="Ex: 12.00" />
+          <span class="field-err" id="e-preco"></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Descrição</label>
+        <textarea class="form-control" id="f-desc" rows="3" placeholder="Descrição breve do produto (opcional)"></textarea>
+      </div>
+      <label class="form-check">
+        <input type="checkbox" id="f-ativo" checked />
+        <span>Produto ativo</span>
+      </label>
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+        <button type="submit" class="btn-primary" id="btn-salvar">✓ Salvar Produto</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Produto cadastrado com sucesso!</div>
+
+<script>
+  const API = 'http://127.0.0.1:8000';
+
+  // --- NAVEGAÇÃO ---
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.getElementById('nav-' + name).classList.add('active');
+    if (name === 'produtos') loadProdutos();
+  }
+
+  // --- PRODUTOS ---
+  async function loadProdutos() {
+    const area = document.getElementById('produtos-area');
+    const errArea = document.getElementById('error-area');
+    errArea.innerHTML = '';
+    area.innerHTML = '<div class="center"><div class="spinner"></div><p>Carregando produtos...</p></div>';
+
+    let produtos = null;
+    let lastError = null;
+
+    const endpoints = ['http://127.0.0.1:8000', 'http://localhost:8000'];
+    for (const ep of endpoints) {
+      try {
+        const res = await fetch(`${ep}/produtos`);
+        if (res.ok) {
+          produtos = await res.json();
+          window.ACTIVE_API = ep;
+          break;
+        }
+      } catch (err) {
+        lastError = err;
+      }
+    }
+
+    if (!produtos) {
+      document.getElementById('count-label').textContent = 'Erro ao carregar';
+      errArea.innerHTML = `<div class="error-banner">
+        ⚠️ Não foi possível conectar ao backend.<br>
+        <strong>Dica:</strong> Se você estiver com a URL <code>file:///...</code> na barra de endereços, abra pelo servidor local em: <a href="http://localhost:3000" style="color:#c2185b;font-weight:700">http://localhost:3000</a> (o navegador bloqueia conexões de arquivos locais por segurança).<br>
+        <small>Detalhe técnico: ${lastError?.message || 'Falha na requisição'}</small>
+      </div>`;
+      area.innerHTML = '';
+      return;
+    }
+
+    document.getElementById('count-label').textContent =
+      `${produtos.length} produto${produtos.length !== 1 ? 's' : ''} cadastrado${produtos.length !== 1 ? 's' : ''}`;
+
+    if (produtos.length === 0) {
+      area.innerHTML = '<div class="center"><div style="font-size:3rem">🍰</div><h3>Nenhum produto ainda</h3><p>Clique em "Novo Produto"!</p></div>';
+      return;
+    }
+
+    area.innerHTML = '<div class="produtos-grid">' + produtos.map(renderCard).join('') + '</div>';
+  }
+
+  function formatPreco(v) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
+  }
+
+  function renderCard(p) {
+    return `
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-nome">${p.nome}</div>
+            <div class="card-sabor">${p.sabor}</div>
+          </div>
+          <span class="cat-badge">${p.categoria}</span>
+        </div>
+        ${p.descricao ? `<p class="card-desc">${p.descricao}</p>` : ''}
+        <div class="card-footer">
+          <span class="card-preco">${formatPreco(p.preco_venda)}</span>
+          <div class="status">
+            <span class="dot ${p.ativo ? 'ativo' : ''}"></span>
+            <span class="label-ativo">${p.ativo ? 'Ativo' : 'Inativo'}</span>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  // --- MODAL ---
+  function openModal() {
+    document.getElementById('overlay').classList.add('open');
+    document.getElementById('produto-form').reset();
+    document.getElementById('f-ativo').checked = true;
+    clearErrors();
+    document.getElementById('form-error').style.display = 'none';
+  }
+
+  function closeModal() {
+    document.getElementById('overlay').classList.remove('open');
+  }
+
+  document.getElementById('overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  function clearErrors() {
+    ['nome','sabor','preco'].forEach(f => {
+      document.getElementById('e-' + f).textContent = '';
+      document.getElementById('f-' + f).classList.remove('err');
+    });
+  }
+
+  // --- SUBMIT ---
+  async function submitForm(e) {
+    e.preventDefault();
+    clearErrors();
+
+    const nome = document.getElementById('f-nome').value.trim();
+    const sabor = document.getElementById('f-sabor').value.trim();
+    const categoria = document.getElementById('f-categoria').value;
+    const preco = document.getElementById('f-preco').value;
+    const descricao = document.getElementById('f-desc').value.trim();
+    const ativo = document.getElementById('f-ativo').checked;
+
+    let valid = true;
+    if (!nome) { document.getElementById('e-nome').textContent = 'Nome é obrigatório'; document.getElementById('f-nome').classList.add('err'); valid = false; }
+    if (!sabor) { document.getElementById('e-sabor').textContent = 'Sabor é obrigatório'; document.getElementById('f-sabor').classList.add('err'); valid = false; }
+    if (preco === '' || isNaN(Number(preco)) || Number(preco) < 0) { document.getElementById('e-preco').textContent = 'Informe um preço válido (≥ 0)'; document.getElementById('f-preco').classList.add('err'); valid = false; }
+    if (!valid) return;
+
+    const btn = document.getElementById('btn-salvar');
+    btn.disabled = true;
+    btn.textContent = 'Salvando...';
+
+    try {
+      const activeEndpoint = window.ACTIVE_API || 'http://127.0.0.1:8000';
+      const res = await fetch(`${activeEndpoint}/produtos`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, sabor, categoria, preco_venda: parseFloat(preco), descricao: descricao || null, ativo })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.detail || 'Erro ao salvar');
+      }
+      closeModal();
+      await loadProdutos();
+      showToast();
+    } catch (err) {
+      const ferr = document.getElementById('form-error');
+      ferr.style.display = 'block';
+      ferr.textContent = '⚠️ ' + err.message;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '✓ Salvar Produto';
+    }
+  }
+
+  // --- TOAST ---
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4000);
+  }
+</script>
+</body>
+</html>

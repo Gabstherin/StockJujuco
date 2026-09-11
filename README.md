@@ -169,14 +169,14 @@ A aplicação estará disponível em: **http://localhost:5173**
 
 | Nome | RA |
 |------|----|
-| (Preencher com nome completo) | (RA) |
+| Gabriela Andrade | (Preencher RA) |
 
 ---
 
 ## 📎 Links
 
-- 🔗 **GitHub**: (este repositório)
-- 📋 **Board do Projeto**: (link do board)
+- 🔗 **GitHub**: https://github.com/Gabstherin/StockJujuco
+- 📋 **Board do Projeto**: https://github.com/users/Gabstherin/projects/1/views/1
 - 🎥 **Vídeo AC01**: (link do vídeo)
 
 ---
