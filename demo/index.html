@@ -40,63 +40,77 @@
       text-decoration:none; color:var(--texto-leve); font-weight:500; font-size:.9rem;
       padding:.4rem 1rem; border-radius:var(--radius-sm); transition:.2s;
     }
-    nav a:hover, nav a.active { background:var(--rosa-claro); color:var(--rosa); }
+    nav a:hover, nav a.active { background:var(--rosa-claro); color:var(--rosa); font-weight:600; }
 
     /* PAGES */
     .page { display:none; max-width:1100px; margin:0 auto; padding:2rem 1.5rem; }
     .page.active { display:block; }
 
     /* HOME */
-    .hero { text-align:center; padding:4rem 1rem; }
+    .hero { text-align:center; padding:3rem 1rem; }
     .logo-big {
-      width:120px; height:120px; border-radius:50%;
+      width:110px; height:110px; border-radius:50%;
       background:linear-gradient(135deg,var(--rosa),var(--rosa-medio));
       display:flex; align-items:center; justify-content:center;
-      color:#fff; font-size:2.5rem; font-weight:800; margin:0 auto 1.5rem;
+      color:#fff; font-size:2.3rem; font-weight:800; margin:0 auto 1.2rem;
       box-shadow:var(--sombra-hover); letter-spacing:-2px;
     }
-    .hero h1 { font-size:2.5rem; font-weight:700; color:var(--rosa); margin-bottom:.5rem; }
-    .hero p { color:var(--texto-leve); margin-bottom:.4rem; }
-    .hero em { font-size:.9rem; color:var(--rosa-medio); display:block; margin-bottom:2.5rem; }
-    .feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem; margin-top:2.5rem; }
+    .hero h1 { font-size:2.3rem; font-weight:700; color:var(--rosa); margin-bottom:.4rem; }
+    .hero p { color:var(--texto-leve); margin-bottom:.3rem; }
+    .hero em { font-size:.9rem; color:var(--rosa-medio); display:block; margin-bottom:2rem; }
+    .hero-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem; }
+    
+    .feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.2rem; margin-top:2rem; }
     .feature-card {
-      background:var(--branco); border-radius:var(--radius); padding:1.5rem;
+      background:var(--branco); border-radius:var(--radius); padding:1.4rem;
       text-align:center; box-shadow:var(--sombra); border-top:3px solid var(--verde);
-      transition:.2s;
+      transition:.2s; cursor:pointer;
     }
     .feature-card:hover { transform:translateY(-3px); box-shadow:var(--sombra-hover); }
-    .feature-card .icon { font-size:2rem; margin-bottom:.75rem; }
+    .feature-card .icon { font-size:2rem; margin-bottom:.5rem; }
     .feature-card h3 { font-size:.95rem; font-weight:600; margin-bottom:.3rem; }
     .feature-card p { font-size:.8rem; color:var(--texto-leve); }
     .badge-soon { background:var(--cinza); color:var(--texto-leve); font-size:.65rem; padding:2px 8px; border-radius:20px; font-weight:500; margin-top:.5rem; display:inline-block; }
-    .badge-ok { background:var(--rosa-claro); color:var(--rosa); font-size:.65rem; padding:2px 8px; border-radius:20px; font-weight:500; margin-top:.5rem; display:inline-block; }
+    .badge-ok { background:var(--rosa-claro); color:var(--rosa); font-size:.65rem; padding:2px 8px; border-radius:20px; font-weight:600; margin-top:.5rem; display:inline-block; }
+    .badge-new { background:#E8F5E9; color:#2E7D32; font-size:.65rem; padding:2px 8px; border-radius:20px; font-weight:700; margin-top:.5rem; display:inline-block; }
 
     /* BTN */
     .btn-primary {
       background:linear-gradient(135deg,var(--rosa),#c2185b); color:#fff;
-      border:none; padding:.8rem 2rem; border-radius:var(--radius);
-      font-family:'Poppins',sans-serif; font-size:1rem; font-weight:600;
-      cursor:pointer; transition:.2s; display:inline-block;
+      border:none; padding:.7rem 1.6rem; border-radius:var(--radius);
+      font-family:'Poppins',sans-serif; font-size:.95rem; font-weight:600;
+      cursor:pointer; transition:.2s; display:inline-block; text-decoration:none;
     }
     .btn-primary:hover { transform:translateY(-2px); box-shadow:var(--sombra-hover); }
     .btn-primary:disabled { opacity:.6; cursor:not-allowed; transform:none; }
     .btn-secondary {
       background:var(--cinza); color:var(--texto-leve); border:none;
-      padding:.7rem 1.5rem; border-radius:var(--radius-sm);
-      font-family:'Poppins',sans-serif; font-size:.9rem; font-weight:500; cursor:pointer; transition:.2s;
+      padding:.65rem 1.3rem; border-radius:var(--radius-sm);
+      font-family:'Poppins',sans-serif; font-size:.85rem; font-weight:500; cursor:pointer; transition:.2s;
     }
     .btn-secondary:hover { background:#e0e0e0; }
+    .btn-outline {
+      background:transparent; border:1.5px solid var(--rosa); color:var(--rosa);
+      padding:.4rem .9rem; border-radius:var(--radius-sm);
+      font-family:'Poppins',sans-serif; font-size:.8rem; font-weight:600; cursor:pointer; transition:.2s;
+    }
+    .btn-outline:hover { background:var(--rosa); color:#fff; }
+    .btn-danger-outline {
+      background:transparent; border:1px solid #ef5350; color:#d32f2f;
+      padding:.25rem .6rem; border-radius:4px; font-size:.75rem; cursor:pointer;
+    }
+    .btn-danger-outline:hover { background:#ffebee; }
 
-    /* PRODUTOS PAGE */
-    .page-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:2rem; flex-wrap:wrap; gap:1rem; }
-    .page-header h1 { font-size:1.8rem; font-weight:700; }
+    /* PAGE HEADER */
+    .page-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem; }
+    .page-header h1 { font-size:1.6rem; font-weight:700; }
     .page-header h1 span { color:var(--rosa); }
     .page-count { font-size:.85rem; color:var(--texto-leve); }
-    .produtos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; }
 
-    /* CARD */
+    /* PRODUCT CARDS */
+    .produtos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.3rem; }
     .card {
-      background:var(--branco); border-radius:var(--radius); padding:1.5rem;
+      background:var(--branco); border-radius:var(--radius); padding:1.3rem;
       box-shadow:var(--sombra); transition:.2s; border-left:4px solid var(--rosa);
       display:flex; flex-direction:column; gap:.5rem;
     }
@@ -104,16 +118,67 @@
     .card-header { display:flex; justify-content:space-between; align-items:flex-start; }
     .card-nome { font-size:1rem; font-weight:600; }
     .card-sabor { font-size:.85rem; color:var(--rosa); font-weight:500; }
-    .cat-badge { background:var(--verde); color:var(--verde-escuro); font-size:.7rem; font-weight:600; padding:3px 10px; border-radius:20px; white-space:nowrap; }
-    .card-desc { font-size:.82rem; color:var(--texto-leve); line-height:1.5; flex:1; }
-    .card-footer { display:flex; justify-content:space-between; align-items:center; margin-top:.5rem; padding-top:.75rem; border-top:1px solid var(--cinza); }
-    .card-preco { font-size:1.3rem; font-weight:700; color:var(--rosa); }
-    .status { display:flex; align-items:center; gap:5px; font-size:.75rem; font-weight:500; }
-    .dot { width:8px; height:8px; border-radius:50%; }
-    .dot.ativo { background:var(--verde-escuro); }
-    .label-ativo { color:var(--verde-escuro); }
+    .cat-badge { background:var(--verde); color:var(--verde-escuro); font-size:.7rem; font-weight:600; padding:2px 8px; border-radius:20px; white-space:nowrap; }
+    .card-desc { font-size:.8rem; color:var(--texto-leve); line-height:1.4; flex:1; }
 
-    /* LOADING / ERROR / EMPTY */
+    /* FINANCIAL METRICS (AC03) */
+    .finance-metrics {
+      background:#FAFAFA; border:1px solid #EEEEEE; border-radius:var(--radius-sm);
+      padding:.6rem .8rem; display:flex; justify-content:space-between; align-items:center;
+      margin-top:.3rem; font-size:.78rem;
+    }
+    .metric-col span { display:block; color:var(--texto-leve); font-size:.7rem; }
+    .metric-col strong { color:var(--texto); font-size:.85rem; }
+    .metric-col strong.lucro { color:#2E7D32; }
+
+    .card-footer { display:flex; justify-content:space-between; align-items:center; margin-top:.4rem; padding-top:.6rem; border-top:1px solid var(--cinza); }
+    .card-preco { font-size:1.2rem; font-weight:700; color:var(--rosa); }
+
+    /* KPIS PRECIFICACAO */
+    .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1rem; margin-bottom:1.5rem; }
+    .kpi-card {
+      background:var(--branco); border-radius:var(--radius); padding:1.2rem;
+      box-shadow:var(--sombra); border-top:3px solid var(--rosa);
+    }
+    .kpi-title { font-size:.75rem; color:var(--texto-leve); text-transform:uppercase; font-weight:600; margin-bottom:.3rem; }
+    .kpi-value { font-size:1.6rem; font-weight:700; color:var(--texto); }
+    .kpi-value.verde { color:#2E7D32; }
+    .kpi-value.rosa { color:var(--rosa); }
+    .kpi-sub { font-size:.75rem; color:var(--texto-leve); margin-top:.2rem; }
+
+    /* SECTIONS & TABLES */
+    .section-card {
+      background:var(--branco); border-radius:var(--radius); padding:1.5rem;
+      box-shadow:var(--sombra); margin-bottom:1.5rem;
+    }
+    .section-title { font-size:1.1rem; font-weight:700; color:var(--texto); margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center; }
+
+    .custom-table { width:100%; border-collapse:collapse; font-size:.85rem; }
+    .custom-table th { background:#FAFAFA; text-align:left; padding:.6rem .8rem; font-weight:600; color:var(--texto-leve); border-bottom:1.5px solid #EEEEEE; }
+    .custom-table td { padding:.7rem .8rem; border-bottom:1px solid #F0F0F0; }
+    .custom-table tr:hover { background:#FFFDFD; }
+
+    /* SIMULADOR DE MARGEM (AC03) */
+    .simulador-box {
+      background:linear-gradient(135deg, #FFF9FA, #FFF5F8);
+      border:1.5px solid var(--rosa-claro); border-radius:var(--radius);
+      padding:1.3rem; margin-top:1rem;
+    }
+    .sim-slider-row { display:flex; align-items:center; gap:1rem; margin:1rem 0; }
+    .sim-slider { flex:1; accent-color:var(--rosa); height:6px; cursor:pointer; }
+    .sim-margem-label { font-size:1.2rem; font-weight:700; color:var(--rosa); min-width:60px; text-align:right; }
+    .sim-results { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin-top:1rem; }
+    .sim-res-item { background:#fff; border-radius:var(--radius-sm); padding:.8rem; text-align:center; border:1px solid var(--rosa-claro); }
+    .sim-res-item span { font-size:.7rem; color:var(--texto-leve); display:block; }
+    .sim-res-item strong { font-size:1.2rem; color:var(--rosa); font-weight:700; }
+
+    .select-produto {
+      font-family:'Poppins',sans-serif; font-size:.95rem; font-weight:600;
+      padding:.6rem 1rem; border-radius:var(--radius-sm); border:1.5px solid var(--rosa);
+      color:var(--rosa); background:#fff; outline:none; cursor:pointer;
+    }
+
+    /* LOADING & ERROR */
     .center { text-align:center; padding:3rem; color:var(--texto-leve); }
     .spinner { width:40px; height:40px; border:4px solid var(--rosa-claro); border-top-color:var(--rosa); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 1rem; }
     @keyframes spin { to { transform:rotate(360deg); } }
@@ -122,31 +187,31 @@
     /* MODAL */
     .overlay { position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:200; padding:1rem; backdrop-filter:blur(2px); }
     .overlay.open { display:flex; }
-    .modal { background:var(--branco); border-radius:var(--radius); width:100%; max-width:540px; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,.2); }
-    .modal-header { display:flex; align-items:center; justify-content:space-between; padding:1.5rem 1.5rem 1rem; border-bottom:1px solid var(--cinza); }
-    .modal-header h2 { font-size:1.2rem; font-weight:700; }
-    .modal-close { background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--texto-leve); padding:.2rem .5rem; border-radius:var(--radius-sm); transition:.2s; }
-    .modal-close:hover { background:var(--cinza); }
-    .form { padding:1.5rem; display:flex; flex-direction:column; gap:1.2rem; }
+    .modal { background:var(--branco); border-radius:var(--radius); width:100%; max-width:520px; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+    .modal-header { display:flex; align-items:center; justify-content:space-between; padding:1.2rem 1.5rem; border-bottom:1px solid var(--cinza); }
+    .modal-header h2 { font-size:1.15rem; font-weight:700; }
+    .modal-close { background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--texto-leve); }
+    .form { padding:1.3rem 1.5rem; display:flex; flex-direction:column; gap:1rem; }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-    .form-group { display:flex; flex-direction:column; gap:.4rem; }
-    .form-group label { font-size:.85rem; font-weight:600; }
+    .form-group { display:flex; flex-direction:column; gap:.3rem; }
+    .form-group label { font-size:.8rem; font-weight:600; }
     .req { color:var(--rosa); margin-left:2px; }
-    .form-control { border:1.5px solid #E0E0E0; border-radius:var(--radius-sm); padding:.6rem .9rem; font-family:'Poppins',sans-serif; font-size:.9rem; outline:none; transition:.2s; }
+    .form-control { border:1.5px solid #E0E0E0; border-radius:var(--radius-sm); padding:.55rem .8rem; font-family:'Poppins',sans-serif; font-size:.85rem; outline:none; transition:.2s; }
     .form-control:focus { border-color:var(--rosa); box-shadow:0 0 0 3px rgba(233,30,140,.1); }
-    .form-control.err { border-color:#e53935; }
-    textarea.form-control { resize:vertical; min-height:80px; }
-    .form-check { display:flex; align-items:center; gap:.5rem; cursor:pointer; }
-    .form-check input { width:18px; height:18px; accent-color:var(--rosa); cursor:pointer; }
-    .field-err { font-size:.75rem; color:#e53935; }
     .form-actions { display:flex; gap:.75rem; justify-content:flex-end; padding-top:.5rem; border-top:1px solid var(--cinza); }
 
     /* TOAST */
-    .toast { position:fixed; bottom:2rem; right:2rem; background:var(--verde-escuro); color:#fff; padding:1rem 1.5rem; border-radius:var(--radius); font-size:.9rem; font-weight:500; box-shadow:0 4px 20px rgba(0,0,0,.2); z-index:300; display:none; align-items:center; gap:.5rem; animation:slideIn .3s ease; }
+    .toast { position:fixed; bottom:2rem; right:2rem; background:var(--verde-escuro); color:#fff; padding:.8rem 1.4rem; border-radius:var(--radius); font-size:.85rem; font-weight:500; box-shadow:0 4px 20px rgba(0,0,0,.2); z-index:300; display:none; align-items:center; gap:.5rem; animation:slideIn .3s ease; }
     .toast.show { display:flex; }
     @keyframes slideIn { from { transform:translateX(120%); opacity:0; } to { transform:translateX(0); opacity:1; } }
 
-    @media(max-width:640px) { .form-row { grid-template-columns:1fr; } .navbar { padding:0 1rem; } .hero h1 { font-size:1.8rem; } .toast { right:1rem; left:1rem; bottom:1rem; } }
+    @media(max-width:640px) {
+      .navbar { padding:0 1rem; }
+      .navbar nav ul { gap:.2rem; }
+      .navbar nav a { font-size:.78rem; padding:.3rem .6rem; }
+      .page-header { flex-direction:column; align-items:flex-start; }
+      .form-row { grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body>
@@ -164,6 +229,8 @@
     <ul>
       <li><a href="#" id="nav-home" class="active" onclick="showPage('home');return false;">Início</a></li>
       <li><a href="#" id="nav-produtos" onclick="showPage('produtos');return false;">Produtos</a></li>
+      <li><a href="#" id="nav-ingredientes" onclick="showPage('ingredientes');return false;">Ingredientes</a></li>
+      <li><a href="#" id="nav-precificacao" onclick="showPage('precificacao');return false;">Custos & Precificação</a></li>
     </ul>
   </nav>
 </header>
@@ -173,33 +240,38 @@
   <div class="hero">
     <div class="logo-big">JJ</div>
     <h1>StockJujuco</h1>
-    <p>Controle de produtos e estoque para confeitaria artesanal</p>
-    <em>✨ Feito com carinho para a Juju Co.</em>
-    <button class="btn-primary" onclick="showPage('produtos')">🍰 Ver Catálogo de Produtos</button>
+    <p>Controle de produtos, ingredientes, ficha técnica e precificação para confeitaria</p>
+    <em>Feito especialmente para a Juju Co. Artesanal</em>
+    
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="showPage('precificacao')">Calcular Custos & Precificação</button>
+      <button class="btn-secondary" onclick="showPage('produtos')">Ver Catálogo de Produtos</button>
+    </div>
+
     <div class="feature-grid">
-      <div class="feature-card">
+      <div class="feature-card" onclick="showPage('produtos')">
         <div class="icon">🍫</div>
         <h3>Catálogo de Produtos</h3>
-        <p>Cadastre e consulte seus produtos com preço e categoria.</p>
-        <span class="badge-ok">Disponível ✓</span>
+        <p>Cadastro e listagem de produtos com preços de venda.</p>
+        <span class="badge-ok">AC01 Concluída</span>
       </div>
-      <div class="feature-card">
+      <div class="feature-card" onclick="showPage('ingredientes')">
         <div class="icon">🥚</div>
-        <h3>Ingredientes e Receitas</h3>
-        <p>Associe ingredientes aos produtos e controle receitas.</p>
-        <span class="badge-soon">Em breve — AC02</span>
+        <h3>Ingredientes & Insumos</h3>
+        <p>Cadastro de matérias-primas e cálculo do custo unitário por g/ml/un.</p>
+        <span class="badge-new">AC02 Integrada</span>
       </div>
-      <div class="feature-card">
+      <div class="feature-card" onclick="showPage('precificacao')">
         <div class="icon">💰</div>
-        <h3>Custos e Precificação</h3>
-        <p>Calcule custo por receita e sugira preço de venda.</p>
-        <span class="badge-soon">Em breve — AC03</span>
+        <h3>Custos & Precificação</h3>
+        <p>Ficha técnica, custo real por unidade, margem de lucro e preço sugerido.</p>
+        <span class="badge-new">AC03 Entrega Atual</span>
       </div>
       <div class="feature-card">
         <div class="icon">📦</div>
-        <h3>Estoque</h3>
-        <p>Controle entrada e saída de ingredientes em estoque.</p>
-        <span class="badge-soon">Em breve — Final</span>
+        <h3>Estoque & Dashboard</h3>
+        <p>Controle de entrada e saída de insumos com alertas de reposição.</p>
+        <span class="badge-soon">Entrega Final (22/11)</span>
       </div>
     </div>
   </div>
@@ -212,227 +284,679 @@
       <h1><span>Catálogo</span> de Produtos</h1>
       <p class="page-count" id="count-label">Carregando...</p>
     </div>
-    <button class="btn-primary" onclick="openModal()">+ Novo Produto</button>
+    <button class="btn-primary" onclick="openProdutoModal()">+ Novo Produto</button>
   </div>
-  <div id="error-area"></div>
-  <div id="produtos-area">
-    <div class="center"><div class="spinner"></div><p>Carregando produtos...</p></div>
+  <div id="error-area-produtos"></div>
+  <div id="produtos-area"></div>
+</div>
+
+<!-- INGREDIENTES (AC02) -->
+<div id="page-ingredientes" class="page">
+  <div class="page-header">
+    <div>
+      <h1><span>Ingredientes</span> & Insumos</h1>
+      <p class="page-count" id="count-ingredientes">Carregando...</p>
+    </div>
+    <button class="btn-primary" onclick="openIngredienteModal()">+ Novo Ingrediente</button>
+  </div>
+  <div id="error-area-ingredientes"></div>
+  
+  <div class="section-card">
+    <div style="overflow-x:auto">
+      <table class="custom-table" id="tabela-ingredientes">
+        <thead>
+          <tr>
+            <th>Ingrediente</th>
+            <th>Unidade</th>
+            <th>Preço Embalagem</th>
+            <th>Tamanho Embalagem</th>
+            <th>Custo Unitário</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpo-ingredientes">
+          <tr><td colspan="6" class="center"><div class="spinner"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
-<!-- MODAL -->
-<div class="overlay" id="overlay">
+<!-- PRECIFICACAO & CUSTOS (AC03) -->
+<div id="page-precificacao" class="page">
+  <div class="page-header">
+    <div>
+      <h1>Custos & <span>Precificação</span></h1>
+      <p class="page-count">Ficha técnica da receita, custo real e simulador de margens</p>
+    </div>
+    <div>
+      <label style="font-size:.8rem;font-weight:600;margin-right:8px">Produto:</label>
+      <select id="select-produto-precificacao" class="select-produto" onchange="carregarPrecificacao(this.value)">
+        <option>Carregando produtos...</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="error-area-precificacao"></div>
+
+  <!-- KPIS -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-title">Preço de Venda Atual</div>
+      <div class="kpi-value rosa" id="kpi-preco-venda">R$ 0,00</div>
+      <div class="kpi-sub" id="kpi-categoria">Categoria</div>
+    </div>
+    <div class="kpi-card" style="border-top-color:#FF9800">
+      <div class="kpi-title">Custo de Produção (CPV)</div>
+      <div class="kpi-value" id="kpi-custo-total" style="color:#E65100">R$ 0,00</div>
+      <div class="kpi-sub" id="kpi-total-ingredientes">0 ingredientes na receita</div>
+    </div>
+    <div class="kpi-card" style="border-top-color:#4CAF50">
+      <div class="kpi-title">Lucro Bruto Unitário</div>
+      <div class="kpi-value verde" id="kpi-lucro-bruto">R$ 0,00</div>
+      <div class="kpi-sub" id="kpi-lucro-sub">Margem em reais</div>
+    </div>
+    <div class="kpi-card" style="border-top-color:#2196F3">
+      <div class="kpi-title">Margem de Lucro (%)</div>
+      <div class="kpi-value" id="kpi-margem-pct" style="color:#0D47A1">0,0%</div>
+      <div class="kpi-sub" id="kpi-status-margem">Situação da margem</div>
+    </div>
+  </div>
+
+  <!-- FICHA TÉCNICA / RECEITA -->
+  <div class="section-card">
+    <div class="section-title">
+      <span>Ficha Técnica da Receita</span>
+      <button class="btn-outline" onclick="openItemReceitaModal()">+ Adicionar Ingrediente à Receita</button>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="custom-table" id="tabela-receita">
+        <thead>
+          <tr>
+            <th>Ingrediente</th>
+            <th>Qtd Utilizada</th>
+            <th>Custo Unitário</th>
+            <th>Custo no Produto</th>
+            <th>% do Custo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="corpo-receita">
+          <tr><td colspan="6" class="center"><div class="spinner"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SIMULADOR DE PRECIFICAÇÃO (AC03) -->
+  <div class="section-card">
+    <div class="section-title">
+      <span>Simulador Interativo de Preço Sugerido (AC03)</span>
+    </div>
+    <p style="font-size:.85rem;color:var(--texto-leve)">
+      Arraste para ajustar a margem de lucro desejada sobre a venda e descubra o preço ideal para o seu produto cobrir o custo de produção:
+    </p>
+
+    <div class="simulador-box">
+      <div class="sim-slider-row">
+        <span style="font-size:.85rem;font-weight:600">Margem Desejada:</span>
+        <input type="range" min="20" max="85" value="60" step="5" class="sim-slider" id="slider-margem" oninput="simularMargem(this.value)">
+        <span class="sim-margem-label" id="label-slider-margem">60%</span>
+      </div>
+
+      <div class="sim-results">
+        <div class="sim-res-item">
+          <span>Preço Sugerido</span>
+          <strong id="sim-preco-sugerido">R$ 0,00</strong>
+        </div>
+        <div class="sim-res-item">
+          <span>Lucro Projetado por Brownie</span>
+          <strong style="color:#2E7D32" id="sim-lucro-projetado">R$ 0,00</strong>
+        </div>
+        <div class="sim-res-item">
+          <span>Comparativo com Preço Praticado</span>
+          <strong style="font-size:.9rem;color:var(--texto)" id="sim-comparativo">-</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOVO PRODUTO -->
+<div class="overlay" id="overlay-produto">
   <div class="modal">
     <div class="modal-header">
-      <h2>🍫 Novo Produto</h2>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2>Novo Produto</h2>
+      <button class="modal-close" onclick="closeProdutoModal()">✕</button>
     </div>
-    <form class="form" id="produto-form" onsubmit="submitForm(event)">
-      <div id="form-error" class="error-banner" style="display:none"></div>
+    <form class="form" id="form-produto" onsubmit="submitProduto(event)">
       <div class="form-row">
         <div class="form-group">
           <label>Nome <span class="req">*</span></label>
-          <input class="form-control" id="f-nome" placeholder="Ex: Brownie" maxlength="100" />
-          <span class="field-err" id="e-nome"></span>
+          <input class="form-control" id="prod-nome" placeholder="Ex: Brownie" required maxlength="100" />
         </div>
         <div class="form-group">
           <label>Sabor <span class="req">*</span></label>
-          <input class="form-control" id="f-sabor" placeholder="Ex: Caramelo Salgado" maxlength="100" />
-          <span class="field-err" id="e-sabor"></span>
+          <input class="form-control" id="prod-sabor" placeholder="Ex: Pistache" required maxlength="100" />
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label>Categoria <span class="req">*</span></label>
-          <select class="form-control" id="f-categoria">
+          <select class="form-control" id="prod-categoria">
             <option>Brownie</option><option>Bolo</option><option>Brigadeiro</option>
             <option>Cookie</option><option>Trufa</option><option>Outro</option>
           </select>
         </div>
         <div class="form-group">
           <label>Preço de Venda (R$) <span class="req">*</span></label>
-          <input class="form-control" id="f-preco" type="number" min="0" step="0.01" placeholder="Ex: 12.00" />
-          <span class="field-err" id="e-preco"></span>
+          <input class="form-control" id="prod-preco" type="number" min="0" step="0.01" placeholder="Ex: 14.00" required />
         </div>
       </div>
       <div class="form-group">
         <label>Descrição</label>
-        <textarea class="form-control" id="f-desc" rows="3" placeholder="Descrição breve do produto (opcional)"></textarea>
+        <textarea class="form-control" id="prod-desc" rows="2" placeholder="Descrição opcional"></textarea>
       </div>
-      <label class="form-check">
-        <input type="checkbox" id="f-ativo" checked />
-        <span>Produto ativo</span>
-      </label>
       <div class="form-actions">
-        <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
-        <button type="submit" class="btn-primary" id="btn-salvar">✓ Salvar Produto</button>
+        <button type="button" class="btn-secondary" onclick="closeProdutoModal()">Cancelar</button>
+        <button type="submit" class="btn-primary">Salvar Produto</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL NOVO INGREDIENTE (AC02) -->
+<div class="overlay" id="overlay-ingrediente">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Novo Ingrediente</h2>
+      <button class="modal-close" onclick="closeIngredienteModal()">✕</button>
+    </div>
+    <form class="form" id="form-ingrediente" onsubmit="submitIngrediente(event)">
+      <div class="form-group">
+        <label>Nome do Ingrediente / Insumo <span class="req">*</span></label>
+        <input class="form-control" id="ing-nome" placeholder="Ex: Doce de Leite Cremoso" required maxlength="100" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Unidade de Medida <span class="req">*</span></label>
+          <select class="form-control" id="ing-unidade" onchange="atualizarPreviewCusto()">
+            <option value="g">Gramas (g)</option>
+            <option value="ml">Mililitros (ml)</option>
+            <option value="un">Unidade (un)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preço Pago na Embalagem (R$) <span class="req">*</span></label>
+          <input class="form-control" id="ing-preco" type="number" step="0.01" min="0.01" placeholder="Ex: 28.00" required oninput="atualizarPreviewCusto()" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Tamanho / Quantidade da Embalagem <span class="req">*</span></label>
+        <input class="form-control" id="ing-qtd" type="number" step="0.1" min="0.01" placeholder="Ex: 1000 (para 1kg em gramas)" required oninput="atualizarPreviewCusto()" />
+      </div>
+
+      <div style="background:#FFF9FA;border:1px dashed var(--rosa-medio);padding:.8rem;border-radius:8px;font-size:.8rem;text-align:center">
+        <span>Custo Unitário Calculado: </span>
+        <strong style="color:var(--rosa);font-size:.95rem" id="ing-preview-custo">R$ 0,0000 / g</strong>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" onclick="closeIngredienteModal()">Cancelar</button>
+        <button type="submit" class="btn-primary">Salvar Ingrediente</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL ADICIONAR ITEM NA RECEITA -->
+<div class="overlay" id="overlay-receita-item">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Adicionar Ingrediente à Receita</h2>
+      <button class="modal-close" onclick="closeItemReceitaModal()">✕</button>
+    </div>
+    <form class="form" id="form-receita-item" onsubmit="submitItemReceita(event)">
+      <div class="form-group">
+        <label>Selecione o Ingrediente <span class="req">*</span></label>
+        <select class="form-control" id="rec-ingrediente-select" required></select>
+      </div>
+      <div class="form-group">
+        <label>Quantidade Utilizada na Receita <span class="req">*</span></label>
+        <input class="form-control" id="rec-quantidade" type="number" step="0.01" min="0.01" placeholder="Ex: 30" required />
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" onclick="closeItemReceitaModal()">Cancelar</button>
+        <button type="submit" class="btn-primary">Adicionar à Ficha Técnica</button>
       </div>
     </form>
   </div>
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">✅ Produto cadastrado com sucesso!</div>
+<div class="toast" id="toast">Operação realizada com sucesso!</div>
 
 <script>
   const API = 'http://127.0.0.1:8000';
+  let PRODUTOS_CACHE = [];
+  let INGREDIENTES_CACHE = [];
+  let PRODUTO_ATUAL_ID = null;
+  let CUSTO_ATUAL_PRODUTO = 0;
+  let PRECO_ATUAL_PRODUTO = 0;
 
-  // --- NAVEGAÇÃO ---
-  function showPage(name) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    document.getElementById('nav-' + name).classList.add('active');
-    if (name === 'produtos') loadProdutos();
+  function formatMoney(val) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val || 0);
   }
 
-  // --- PRODUTOS ---
-  async function loadProdutos() {
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg || 'Operação realizada com sucesso!';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // --- NAVEGACAO ---
+  function showPage(name, optParam) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    
+    const pageEl = document.getElementById('page-' + name);
+    const navEl = document.getElementById('nav-' + name);
+    if (pageEl) pageEl.classList.add('active');
+    if (navEl) navEl.classList.add('active');
+
+    if (name === 'produtos') carregarProdutos();
+    if (name === 'ingredientes') carregarIngredientes();
+    if (name === 'precificacao') {
+      inicializarTelaPrecificacao(optParam);
+    }
+  }
+
+  // ==========================================
+  // PRODUTOS (AC01 + enriquecido AC03)
+  // ==========================================
+  async function carregarProdutos() {
     const area = document.getElementById('produtos-area');
-    const errArea = document.getElementById('error-area');
+    const errArea = document.getElementById('error-area-produtos');
     errArea.innerHTML = '';
     area.innerHTML = '<div class="center"><div class="spinner"></div><p>Carregando produtos...</p></div>';
 
-    let produtos = null;
-    let lastError = null;
+    try {
+      const res = await fetch(`${API}/produtos`);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      PRODUTOS_CACHE = await res.json();
 
-    const endpoints = ['http://127.0.0.1:8000', 'http://localhost:8000'];
-    for (const ep of endpoints) {
-      try {
-        const res = await fetch(`${ep}/produtos`);
-        if (res.ok) {
-          produtos = await res.json();
-          window.ACTIVE_API = ep;
-          break;
-        }
-      } catch (err) {
-        lastError = err;
+      document.getElementById('count-label').textContent = `${PRODUTOS_CACHE.length} produto(s) cadastrado(s)`;
+
+      if (PRODUTOS_CACHE.length === 0) {
+        area.innerHTML = '<div class="center"><h3>Nenhum produto cadastrado</h3></div>';
+        return;
       }
-    }
 
-    if (!produtos) {
-      document.getElementById('count-label').textContent = 'Erro ao carregar';
-      errArea.innerHTML = `<div class="error-banner">
-        ⚠️ Não foi possível conectar ao backend.<br>
-        <strong>Dica:</strong> Se você estiver com a URL <code>file:///...</code> na barra de endereços, abra pelo servidor local em: <a href="http://localhost:3000" style="color:#c2185b;font-weight:700">http://localhost:3000</a> (o navegador bloqueia conexões de arquivos locais por segurança).<br>
-        <small>Detalhe técnico: ${lastError?.message || 'Falha na requisição'}</small>
-      </div>`;
+      area.innerHTML = '<div class="produtos-grid">' + PRODUTOS_CACHE.map(p => `
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-nome">${p.nome}</div>
+              <div class="card-sabor">${p.sabor}</div>
+            </div>
+            <span class="cat-badge">${p.categoria}</span>
+          </div>
+
+          ${p.descricao ? `<p class="card-desc">${p.descricao}</p>` : ''}
+
+          <!-- METRICAS DE CUSTO E LUCRO (AC03) -->
+          <div class="finance-metrics">
+            <div class="metric-col">
+              <span>Custo de Insumos</span>
+              <strong>${formatMoney(p.custo_producao)}</strong>
+            </div>
+            <div class="metric-col">
+              <span>Lucro Bruto</span>
+              <strong class="lucro">${formatMoney(p.margem_lucro_reais)}</strong>
+            </div>
+            <div class="metric-col">
+              <span>Margem</span>
+              <strong style="color:var(--rosa)">${p.margem_lucro_percentual || 0}%</strong>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <span class="card-preco">${formatMoney(p.preco_venda)}</span>
+            <button class="btn-outline" onclick="showPage('precificacao', ${p.id})">Ficha & Custos</button>
+          </div>
+        </div>
+      `).join('') + '</div>';
+
+    } catch (e) {
+      errArea.innerHTML = `<div class="error-banner">Não foi possível carregar os produtos: ${e.message}</div>`;
       area.innerHTML = '';
-      return;
     }
-
-    document.getElementById('count-label').textContent =
-      `${produtos.length} produto${produtos.length !== 1 ? 's' : ''} cadastrado${produtos.length !== 1 ? 's' : ''}`;
-
-    if (produtos.length === 0) {
-      area.innerHTML = '<div class="center"><div style="font-size:3rem">🍰</div><h3>Nenhum produto ainda</h3><p>Clique em "Novo Produto"!</p></div>';
-      return;
-    }
-
-    area.innerHTML = '<div class="produtos-grid">' + produtos.map(renderCard).join('') + '</div>';
   }
 
-  function formatPreco(v) {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
+  function openProdutoModal() {
+    document.getElementById('overlay-produto').classList.add('open');
+    document.getElementById('form-produto').reset();
+  }
+  function closeProdutoModal() {
+    document.getElementById('overlay-produto').classList.remove('open');
   }
 
-  function renderCard(p) {
-    return `
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-nome">${p.nome}</div>
-            <div class="card-sabor">${p.sabor}</div>
-          </div>
-          <span class="cat-badge">${p.categoria}</span>
-        </div>
-        ${p.descricao ? `<p class="card-desc">${p.descricao}</p>` : ''}
-        <div class="card-footer">
-          <span class="card-preco">${formatPreco(p.preco_venda)}</span>
-          <div class="status">
-            <span class="dot ${p.ativo ? 'ativo' : ''}"></span>
-            <span class="label-ativo">${p.ativo ? 'Ativo' : 'Inativo'}</span>
-          </div>
-        </div>
-      </div>`;
-  }
-
-  // --- MODAL ---
-  function openModal() {
-    document.getElementById('overlay').classList.add('open');
-    document.getElementById('produto-form').reset();
-    document.getElementById('f-ativo').checked = true;
-    clearErrors();
-    document.getElementById('form-error').style.display = 'none';
-  }
-
-  function closeModal() {
-    document.getElementById('overlay').classList.remove('open');
-  }
-
-  document.getElementById('overlay').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-
-  function clearErrors() {
-    ['nome','sabor','preco'].forEach(f => {
-      document.getElementById('e-' + f).textContent = '';
-      document.getElementById('f-' + f).classList.remove('err');
-    });
-  }
-
-  // --- SUBMIT ---
-  async function submitForm(e) {
+  async function submitProduto(e) {
     e.preventDefault();
-    clearErrors();
-
-    const nome = document.getElementById('f-nome').value.trim();
-    const sabor = document.getElementById('f-sabor').value.trim();
-    const categoria = document.getElementById('f-categoria').value;
-    const preco = document.getElementById('f-preco').value;
-    const descricao = document.getElementById('f-desc').value.trim();
-    const ativo = document.getElementById('f-ativo').checked;
-
-    let valid = true;
-    if (!nome) { document.getElementById('e-nome').textContent = 'Nome é obrigatório'; document.getElementById('f-nome').classList.add('err'); valid = false; }
-    if (!sabor) { document.getElementById('e-sabor').textContent = 'Sabor é obrigatório'; document.getElementById('f-sabor').classList.add('err'); valid = false; }
-    if (preco === '' || isNaN(Number(preco)) || Number(preco) < 0) { document.getElementById('e-preco').textContent = 'Informe um preço válido (≥ 0)'; document.getElementById('f-preco').classList.add('err'); valid = false; }
-    if (!valid) return;
-
-    const btn = document.getElementById('btn-salvar');
-    btn.disabled = true;
-    btn.textContent = 'Salvando...';
+    const nome = document.getElementById('prod-nome').value.trim();
+    const sabor = document.getElementById('prod-sabor').value.trim();
+    const categoria = document.getElementById('prod-categoria').value;
+    const preco = parseFloat(document.getElementById('prod-preco').value);
+    const desc = document.getElementById('prod-desc').value.trim();
 
     try {
-      const activeEndpoint = window.ACTIVE_API || 'http://127.0.0.1:8000';
-      const res = await fetch(`${activeEndpoint}/produtos`, {
+      const res = await fetch(`${API}/produtos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome, sabor, categoria, preco_venda: parseFloat(preco), descricao: descricao || null, ativo })
+        body: JSON.stringify({ nome, sabor, categoria, preco_venda: preco, descricao: desc || null, ativo: true })
       });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.detail || 'Erro ao salvar');
-      }
-      closeModal();
-      await loadProdutos();
-      showToast();
+      if (!res.ok) throw new Error('Falha ao cadastrar');
+      closeProdutoModal();
+      showToast('Produto cadastrado com sucesso!');
+      carregarProdutos();
     } catch (err) {
-      const ferr = document.getElementById('form-error');
-      ferr.style.display = 'block';
-      ferr.textContent = '⚠️ ' + err.message;
-    } finally {
-      btn.disabled = false;
-      btn.textContent = '✓ Salvar Produto';
+      alert('Erro: ' + err.message);
     }
   }
 
-  // --- TOAST ---
-  function showToast() {
-    const t = document.getElementById('toast');
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 4000);
+  // ==========================================
+  // INGREDIENTES (AC02)
+  // ==========================================
+  async function carregarIngredientes() {
+    const tbody = document.getElementById('corpo-ingredientes');
+    const errArea = document.getElementById('error-area-ingredientes');
+    errArea.innerHTML = '';
+    tbody.innerHTML = '<tr><td colspan="6" class="center"><div class="spinner"></div></td></tr>';
+
+    try {
+      const res = await fetch(`${API}/ingredientes`);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      INGREDIENTES_CACHE = await res.json();
+
+      document.getElementById('count-ingredientes').textContent = `${INGREDIENTES_CACHE.length} insumo(s) cadastrado(s)`;
+
+      if (INGREDIENTES_CACHE.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="center">Nenhum ingrediente cadastrado ainda.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = INGREDIENTES_CACHE.map(ing => `
+        <tr>
+          <td><strong>${ing.nome}</strong></td>
+          <td><span class="cat-badge" style="background:#E0F2F1;color:#00796B">${ing.unidade_medida}</span></td>
+          <td>${formatMoney(ing.preco_compra)}</td>
+          <td>${ing.quantidade_compra} ${ing.unidade_medida}</td>
+          <td><strong style="color:var(--rosa)">R$ ${ing.custo_unitario.toFixed(4)} / ${ing.unidade_medida}</strong></td>
+          <td>
+            <button class="btn-danger-outline" onclick="excluirIngrediente(${ing.id})">Excluir</button>
+          </td>
+        </tr>
+      `).join('');
+
+    } catch (e) {
+      errArea.innerHTML = `<div class="error-banner">Erro ao carregar ingredientes: ${e.message}</div>`;
+      tbody.innerHTML = '';
+    }
   }
+
+  function openIngredienteModal() {
+    document.getElementById('overlay-ingrediente').classList.add('open');
+    document.getElementById('form-ingrediente').reset();
+    atualizarPreviewCusto();
+  }
+  function closeIngredienteModal() {
+    document.getElementById('overlay-ingrediente').classList.remove('open');
+  }
+
+  function atualizarPreviewCusto() {
+    const preco = parseFloat(document.getElementById('ing-preco').value) || 0;
+    const qtd = parseFloat(document.getElementById('ing-qtd').value) || 0;
+    const un = document.getElementById('ing-unidade').value;
+    const prevEl = document.getElementById('ing-preview-custo');
+
+    if (preco > 0 && qtd > 0) {
+      const custo = preco / qtd;
+      prevEl.textContent = `R$ ${custo.toFixed(4)} / ${un}`;
+    } else {
+      prevEl.textContent = `R$ 0,0000 / ${un}`;
+    }
+  }
+
+  async function submitIngrediente(e) {
+    e.preventDefault();
+    const nome = document.getElementById('ing-nome').value.trim();
+    const unidade_medida = document.getElementById('ing-unidade').value;
+    const preco_compra = parseFloat(document.getElementById('ing-preco').value);
+    const quantidade_compra = parseFloat(document.getElementById('ing-qtd').value);
+
+    try {
+      const res = await fetch(`${API}/ingredientes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, unidade_medida, preco_compra, quantidade_compra })
+      });
+      if (!res.ok) throw new Error('Erro ao salvar ingrediente');
+      closeIngredienteModal();
+      showToast('Ingrediente cadastrado!');
+      carregarIngredientes();
+    } catch (err) {
+      alert('Erro: ' + err.message);
+    }
+  }
+
+  async function excluirIngrediente(id) {
+    if (!confirm('Deseja realmente excluir este ingrediente?')) return;
+    try {
+      const res = await fetch(`${API}/ingredientes/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Erro ao excluir');
+      showToast('Ingrediente excluído!');
+      carregarIngredientes();
+    } catch (err) {
+      alert('Erro: ' + err.message);
+    }
+  }
+
+  // ==========================================
+  // CUSTOS E PRECIFICACAO (AC03)
+  // ==========================================
+  async function inicializarTelaPrecificacao(optProdutoId) {
+    const select = document.getElementById('select-produto-precificacao');
+    try {
+      if (PRODUTOS_CACHE.length === 0) {
+        const res = await fetch(`${API}/produtos`);
+        PRODUTOS_CACHE = await res.json();
+      }
+
+      if (PRODUTOS_CACHE.length === 0) {
+        select.innerHTML = '<option>Cadastre um produto primeiro</option>';
+        return;
+      }
+
+      select.innerHTML = PRODUTOS_CACHE.map(p => `
+        <option value="${p.id}">${p.nome} - ${p.sabor} (${formatMoney(p.preco_venda)})</option>
+      `).join('');
+
+      if (optProdutoId) {
+        select.value = optProdutoId;
+        carregarPrecificacao(optProdutoId);
+      } else {
+        carregarPrecificacao(select.value);
+      }
+
+      // Preenche ingredientes no cache para modal de receita
+      if (INGREDIENTES_CACHE.length === 0) {
+        const rIng = await fetch(`${API}/ingredientes`);
+        INGREDIENTES_CACHE = await rIng.json();
+      }
+
+    } catch (err) {
+      document.getElementById('error-area-precificacao').innerHTML = `<div class="error-banner">Erro: ${err.message}</div>`;
+    }
+  }
+
+  async function carregarPrecificacao(produtoId) {
+    if (!produtoId) return;
+    PRODUTO_ATUAL_ID = produtoId;
+    const errArea = document.getElementById('error-area-precificacao');
+    const tbody = document.getElementById('corpo-receita');
+    errArea.innerHTML = '';
+    tbody.innerHTML = '<tr><td colspan="6" class="center"><div class="spinner"></div></td></tr>';
+
+    try {
+      const res = await fetch(`${API}/produtos/${produtoId}/precificacao`);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+
+      CUSTO_ATUAL_PRODUTO = data.custo_total_producao;
+      PRECO_ATUAL_PRODUTO = data.preco_venda_atual;
+
+      // Atualiza KPIs
+      document.getElementById('kpi-preco-venda').textContent = formatMoney(data.preco_venda_atual);
+      document.getElementById('kpi-categoria').textContent = `${data.categoria} • ${data.produto_sabor}`;
+      document.getElementById('kpi-custo-total').textContent = formatMoney(data.custo_total_producao);
+      document.getElementById('kpi-total-ingredientes').textContent = `${data.itens_receita.length} ingrediente(s) na receita`;
+      document.getElementById('kpi-lucro-bruto').textContent = formatMoney(data.lucro_bruto_unitario);
+      document.getElementById('kpi-lucro-sub').textContent = data.lucro_bruto_unitario >= 0 ? 'Lucro por unidade' : 'Prejuízo unitário';
+      document.getElementById('kpi-margem-pct').textContent = `${data.margem_lucro_percentual}%`;
+      
+      const statusLabel = {
+        'excelente': 'Excelente (>65%)',
+        'saudavel': 'Saudável (35% a 65%)',
+        'baixa': 'Atenção: Margem Baixa (<35%)',
+        'prejuizo': 'Crítico: Vendendo no Prejuízo!'
+      }[data.situacao_margem] || data.situacao_margem;
+      document.getElementById('kpi-status-margem').textContent = statusLabel;
+
+      // Ficha Técnica
+      if (data.itens_receita.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="center">Nenhum ingrediente adicionado à receita deste produto ainda.</td></tr>';
+      } else {
+        tbody.innerHTML = data.itens_receita.map(item => {
+          const pct = data.custo_total_producao > 0 ? ((item.custo_total_item / data.custo_total_producao) * 100).toFixed(1) : 0;
+          return `
+            <tr>
+              <td><strong>${item.ingrediente_nome}</strong></td>
+              <td>${item.quantidade_utilizada} ${item.unidade_medida}</td>
+              <td>R$ ${item.custo_unitario.toFixed(4)} / ${item.unidade_medida}</td>
+              <td><strong style="color:var(--rosa)">${formatMoney(item.custo_total_item)}</strong></td>
+              <td><span style="font-size:.8rem;color:var(--texto-leve)">${pct}%</span></td>
+              <td>
+                <button class="btn-danger-outline" onclick="removerItemReceita(${item.id})">Remover</button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // Atualiza Simulador com slider atual
+      const sliderVal = document.getElementById('slider-margem').value;
+      simularMargem(sliderVal);
+
+    } catch (err) {
+      errArea.innerHTML = `<div class="error-banner">Erro ao carregar dados de precificação: ${err.message}</div>`;
+      tbody.innerHTML = '';
+    }
+  }
+
+  function simularMargem(margemDesejada) {
+    document.getElementById('label-slider-margem').textContent = margemDesejada + '%';
+    const m = parseFloat(margemDesejada);
+
+    if (CUSTO_ATUAL_PRODUTO <= 0) {
+      document.getElementById('sim-preco-sugerido').textContent = 'R$ 0,00';
+      document.getElementById('sim-lucro-projetado').textContent = 'R$ 0,00';
+      document.getElementById('sim-comparativo').textContent = 'Cadastre ingredientes na receita primeiro';
+      return;
+    }
+
+    // Fórmula: Preço = Custo / (1 - (Margem / 100))
+    const precoSugerido = CUSTO_ATUAL_PRODUTO / (1.0 - (m / 100.0));
+    const lucroProjetado = precoSugerido - CUSTO_ATUAL_PRODUTO;
+    const diferenca = PRECO_ATUAL_PRODUTO - precoSugerido;
+
+    document.getElementById('sim-preco-sugerido').textContent = formatMoney(precoSugerido);
+    document.getElementById('sim-lucro-projetado').textContent = formatMoney(lucroProjetado);
+
+    if (Math.abs(diferenca) < 0.25) {
+      document.getElementById('sim-comparativo').innerHTML = '<span style="color:#2E7D32">Preço atual alinhado com essa margem!</span>';
+    } else if (diferenca > 0) {
+      document.getElementById('sim-comparativo').innerHTML = `<span style="color:#2E7D32">Preço atual está <strong>${formatMoney(diferenca)} acima</strong> do sugerido</span>`;
+    } else {
+      document.getElementById('sim-comparativo').innerHTML = `<span style="color:#D32F2F">Preço atual está <strong>${formatMoney(Math.abs(diferenca))} abaixo</strong> do sugerido</span>`;
+    }
+  }
+
+  // --- MODAL ITEM RECEITA ---
+  async function openItemReceitaModal() {
+    if (!PRODUTO_ATUAL_ID) {
+      alert('Selecione um produto primeiro.');
+      return;
+    }
+    const select = document.getElementById('rec-ingrediente-select');
+    if (INGREDIENTES_CACHE.length === 0) {
+      const res = await fetch(`${API}/ingredientes`);
+      INGREDIENTES_CACHE = await res.json();
+    }
+    if (INGREDIENTES_CACHE.length === 0) {
+      alert('Cadastre ingredientes antes de montar a receita!');
+      showPage('ingredientes');
+      return;
+    }
+
+    select.innerHTML = INGREDIENTES_CACHE.map(ing => `
+      <option value="${ing.id}">${ing.nome} (R$ ${ing.custo_unitario.toFixed(4)} / ${ing.unidade_medida})</option>
+    `).join('');
+
+    document.getElementById('rec-quantidade').value = '';
+    document.getElementById('overlay-receita-item').classList.add('open');
+  }
+
+  function closeItemReceitaModal() {
+    document.getElementById('overlay-receita-item').classList.remove('open');
+  }
+
+  async function submitItemReceita(e) {
+    e.preventDefault();
+    const ingrediente_id = parseInt(document.getElementById('rec-ingrediente-select').value);
+    const quantidade_utilizada = parseFloat(document.getElementById('rec-quantidade').value);
+
+    try {
+      const res = await fetch(`${API}/produtos/${PRODUTO_ATUAL_ID}/receita`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ingrediente_id, quantidade_utilizada })
+      });
+      if (!res.ok) throw new Error('Erro ao salvar item na receita');
+      closeItemReceitaModal();
+      showToast('Ingrediente adicionado à receita!');
+      carregarPrecificacao(PRODUTO_ATUAL_ID);
+    } catch (err) {
+      alert('Erro: ' + err.message);
+    }
+  }
+
+  async function removerItemReceita(itemId) {
+    if (!confirm('Remover este ingrediente da receita?')) return;
+    try {
+      const res = await fetch(`${API}/receita-itens/${itemId}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Erro ao remover');
+      showToast('Ingrediente removido da receita.');
+      carregarPrecificacao(PRODUTO_ATUAL_ID);
+    } catch (err) {
+      alert('Erro: ' + err.message);
+    }
+  }
+
+  // Inicializacao
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch(`${API}/produtos`).then(r => r.json()).then(data => PRODUTOS_CACHE = data).catch(()=>{});
+  });
 </script>
 </body>
 </html>

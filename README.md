@@ -1,23 +1,23 @@
 # StockJujuco
 
-> Controle simples de produtos, ingredientes, estoque e precificacao para confeitaria autonoma.
+> Controle de produtos, ingredientes, ficha tecnica, custos e precificacao para confeitaria autonoma.
 
 ---
 
 ## Sobre o Projeto
 
-O **StockJujuco** e um sistema web desenvolvido para auxiliar a **Juju Co.**, uma confeitaria artesanal operada por uma unica pessoa. O sistema permite organizar o catalogo de produtos vendidos e, nas proximas evolucoes, cadastrar ingredientes, compor receitas, calcular custos e apoiar a precificacao.
+O **StockJujuco** e um sistema web desenvolvido para auxiliar a **Juju Co.**, uma confeitaria artesanal operada por uma unica pessoa. O sistema organiza o catalogo de produtos vendidos, cadastra insumos e ingredientes, calcula automaticamente o custo de producao (CPV) de cada receita e apoia a tomada de decisao na precificacao e margens de lucro.
 
-### Produtos iniciais
-- Brownie - Chocolate Tradicional (R$ 12,00)
-- Brownie - Caramelo Salgado (R$ 14,00)
-- Brownie - Chocolate com Amendoim (R$ 13,00)
+### Produtos iniciais cadastrados
+- Brownie - Chocolate Tradicional (Preco: R$ 12,00 | Custo: R$ 4,37 | Margem: 63,6%)
+- Brownie - Caramelo Salgado (Preco: R$ 14,00 | Custo: R$ 6,14 | Margem: 56,1%)
+- Brownie - Chocolate com Amendoim (Preco: R$ 13,00 | Custo: R$ 4,94 | Margem: 62,0%)
 
 ---
 
 ## Arquitetura
 
-O projeto segue a arquitetura de tres camadas:
+O projeto segue a arquitetura em tres camadas:
 
 ```
 +-----------------+     HTTP/REST     +------------------+     SQLAlchemy     +----------+
@@ -51,12 +51,12 @@ O projeto segue a arquitetura de tres camadas:
 ```
 StockJujuco/
 |-- backend/
-|   |-- main.py          # Aplicacao FastAPI e endpoints
-|   |-- database.py      # Conexao SQLite e seed inicial
-|   |-- models.py        # Modelo SQLAlchemy (Produto)
-|   |-- schemas.py       # Schemas Pydantic para validacao
+|   |-- main.py          # Endpoints REST (produtos, ingredientes, receitas, precificacao)
+|   |-- database.py      # Conexao SQLite e seed completo de dados
+|   |-- models.py        # Modelos SQLAlchemy (Produto, Ingrediente, ReceitaItem)
+|   |-- schemas.py       # Schemas Pydantic para validacao e simulacao
 |   |-- requirements.txt # Dependencias Python
-|   `-- stockjujuco.db   # Banco de dados SQLite
+|   `-- stockjujuco.db   # Banco de dados SQLite persistente
 |-- frontend/
 |   |-- index.html
 |   |-- vite.config.js
@@ -64,16 +64,18 @@ StockJujuco/
 |   `-- src/
 |       |-- main.jsx
 |       |-- App.jsx
-|       |-- index.css       # Identidade visual Juju Co.
+|       |-- index.css       # Identidade visual Juju Co. (tons de rosa e verde)
 |       |-- components/
 |       |   |-- Navbar.jsx
 |       |   |-- ProdutoCard.jsx
 |       |   `-- ProdutoForm.jsx
 |       `-- pages/
 |           |-- Home.jsx
-|           `-- Produtos.jsx
+|           |-- Produtos.jsx
+|           |-- Ingredientes.jsx   # AC02: Gestao de insumos e custos unitarios
+|           `-- Precificacao.jsx   # AC03: Ficha tecnica, custos e simulador
 |-- demo/
-|   `-- index.html       # Versao de demonstracao autonoma
+|   `-- index.html       # Versao de demonstracao autonoma completa (AC01 + AC02 + AC03)
 |-- .gitignore
 `-- README.md
 ```
@@ -134,24 +136,32 @@ npm run dev
 
 ## Endpoints da API
 
+### 1. Produtos (AC01)
 | Metodo | Endpoint | Descricao |
 |--------|----------|-----------|
 | GET | `/` | Verificacao de integridade (Health check) |
-| GET | `/produtos` | Listar todos os produtos cadastrados |
+| GET | `/produtos` | Listar produtos com custos e margens calculados |
 | POST | `/produtos` | Cadastrar novo produto no catalogo |
 
-### Exemplo de Requisicao (POST /produtos)
+### 2. Ingredientes (AC02)
+| Metodo | Endpoint | Descricao |
+|--------|----------|-----------|
+| GET | `/ingredientes` | Listar ingredientes e custos unitarios por g/ml/un |
+| POST | `/ingredientes` | Cadastrar novo insumo (calcula custo unitario automatico) |
+| DELETE | `/ingredientes/{id}` | Excluir ingrediente |
 
-```json
-{
-  "nome": "Brownie",
-  "sabor": "Nutella com Oreo",
-  "categoria": "Brownie",
-  "preco_venda": 15.00,
-  "descricao": "Brownie artesanal recheado com Nutella e pedacos de Oreo",
-  "ativo": true
-}
-```
+### 3. Ficha Tecnica e Receitas (AC02)
+| Metodo | Endpoint | Descricao |
+|--------|----------|-----------|
+| GET | `/produtos/{id}/receita` | Listar ingredientes e quantidades da receita do produto |
+| POST | `/produtos/{id}/receita` | Adicionar ou atualizar ingrediente na receita do produto |
+| DELETE | `/receita-itens/{id}` | Remover ingrediente da receita |
+
+### 4. Custos e Precificacao (AC03)
+| Metodo | Endpoint | Descricao |
+|--------|----------|-----------|
+| GET | `/produtos/{id}/precificacao` | Analise detalhada de custo real, lucro bruto, margem e precos sugeridos |
+| GET | `/precificacao/resumo` | Visao consolidada de custos e margens de todos os produtos |
 
 ---
 
@@ -159,9 +169,9 @@ npm run dev
 
 | Entrega | Data | Funcionalidade Principal | Status |
 |---------|------|--------------------------|--------|
-| AC01 | 14/09/2026 | Catalogo de produtos | Em andamento |
-| AC02 | 13/10/2026 | Ingredientes e receitas | Planejado |
-| AC03 | 08/11/2026 | Custos e precificacao | Planejado |
+| AC01 | 14/09/2026 | Catalogo de produtos | Concluido |
+| AC02 | 13/10/2026 | Ingredientes e receitas | Concluido (Integrado na AC03) |
+| AC03 | 08/11/2026 | Custos e precificacao | Concluido (Entrega Atual) |
 | Final | 22/11/2026 | Estoque e visao consolidada | Planejado |
 
 ---
@@ -178,17 +188,17 @@ Todas as atividades estao mapeadas no [Quadro de Projetos](https://github.com/us
 - [#5](https://github.com/Gabstherin/StockJujuco/issues/5) Implementar formulario de cadastro de novo produto
 - [#6](https://github.com/Gabstherin/StockJujuco/issues/6) Integrar front-end com a API e garantir persistencia dos dados
 - [#7](https://github.com/Gabstherin/StockJujuco/issues/7) Gravar video de demonstracao da funcionalidade da AC01
-
-### AC01 - Em Andamento / Em Teste
 - [#8](https://github.com/Gabstherin/StockJujuco/issues/8) Realizar submissao da AC01 no Google Classroom
 
-### Backlog das Proximas Sprints
-- [#9](https://github.com/Gabstherin/StockJujuco/issues/9) Cadastrar ingredientes da confeitaria (AC02)
-- [#10](https://github.com/Gabstherin/StockJujuco/issues/10) Compor receitas associando ingredientes aos produtos (AC02)
-- [#11](https://github.com/Gabstherin/StockJujuco/issues/11) Calcular custo automatico da receita por produto (AC03)
-- [#12](https://github.com/Gabstherin/StockJujuco/issues/12) Definir margem de lucro e apoio a precificacao sugerida (AC03)
-- [#13](https://github.com/Gabstherin/StockJujuco/issues/13) Controle simples de estoque - entradas e saidas (Final)
-- [#14](https://github.com/Gabstherin/StockJujuco/issues/14) Dashboard consolidado para a confeiteira (Final)
+### AC02 / AC03 - Concluidas
+- [#9](https://github.com/Gabstherin/StockJujuco/issues/9) Cadastrar ingredientes da confeitaria e calculo do custo unitario
+- [#10](https://github.com/Gabstherin/StockJujuco/issues/10) Compor receitas associando ingredientes aos produtos (Ficha Tecnica)
+- [#11](https://github.com/Gabstherin/StockJujuco/issues/11) Calcular custo automatico da receita por produto (CPV)
+- [#12](https://github.com/Gabstherin/StockJujuco/issues/12) Definir margem de lucro e simulador interativo de precificacao sugerida
+
+### Backlog da Entrega Final (22/11/2026)
+- [#13](https://github.com/Gabstherin/StockJujuco/issues/13) Controle simples de estoque - entradas e saidas de insumos
+- [#14](https://github.com/Gabstherin/StockJujuco/issues/14) Dashboard consolidado para a confeiteira
 
 ---
 
@@ -204,7 +214,8 @@ Todas as atividades estao mapeadas no [Quadro de Projetos](https://github.com/us
 
 - Repositorio GitHub: https://github.com/Gabstherin/StockJujuco
 - Quadro de Atividades (Board): https://github.com/users/Gabstherin/projects/1/views/1
-- Video de Demonstracao AC01: Anexado diretamente na entrega da atividade no Google Classroom (Stockjujuco_test.mp4)
+- Video de Demonstracao AC01: Anexado no Classroom (Stockjujuco_test.mp4)
+- Video de Demonstracao AC03: Anexado diretamente na entrega da atividade no Google Classroom
 
 ---
 

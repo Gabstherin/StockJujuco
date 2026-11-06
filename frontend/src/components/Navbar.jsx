@@ -22,6 +22,16 @@ export default function Navbar() {
             Produtos
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/ingredientes" className={({ isActive }) => isActive ? 'active' : ''}>
+            Ingredientes
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/precificacao" className={({ isActive }) => isActive ? 'active' : ''}>
+            Custos & Precificação
+          </NavLink>
+        </li>
       </ul>
     </nav>
   )
