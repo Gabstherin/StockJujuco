@@ -196,6 +196,9 @@ Todas as atividades estao mapeadas no [Quadro de Projetos](https://github.com/us
 - [#11](https://github.com/Gabstherin/StockJujuco/issues/11) Calcular custo automatico da receita por produto (CPV)
 - [#12](https://github.com/Gabstherin/StockJujuco/issues/12) Definir margem de lucro e simulador interativo de precificacao sugerida
 
+### AC03 - Em Andamento / Em Teste
+- [#15](https://github.com/Gabstherin/StockJujuco/issues/15) Realizar submissao da AC03 no Google Classroom
+
 ### Backlog da Entrega Final (22/11/2026)
 - [#13](https://github.com/Gabstherin/StockJujuco/issues/13) Controle simples de estoque - entradas e saidas de insumos
 - [#14](https://github.com/Gabstherin/StockJujuco/issues/14) Dashboard consolidado para a confeiteira
