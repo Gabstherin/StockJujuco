@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" width="920" height="620" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="620" fill="#FAFAFA" rx="12"/>
+  <text x="460" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#333">Diagrama de Caso de Uso - StockJujuco</text>
+
+  <!-- Sistema (retangulo pontilhado) -->
+  <rect x="160" y="60" width="680" height="510" rx="10" fill="white" stroke="#E91E8C" stroke-width="2" stroke-dasharray="10,5"/>
+  <text x="500" y="82" text-anchor="middle" font-size="14" font-weight="bold" fill="#E91E8C">Sistema StockJujuco - Juju Co. Confeitaria</text>
+
+  <!-- Ator: Confeiteira -->
+  <!-- Cabeca -->
+  <circle cx="80" cy="200" r="22" fill="white" stroke="#333" stroke-width="2"/>
+  <text x="80" y="205" text-anchor="middle" font-size="18">&#128105;</text>
+  <!-- Corpo -->
+  <line x1="80" y1="222" x2="80" y2="280" stroke="#333" stroke-width="2"/>
+  <!-- Bracos -->
+  <line x1="50" y1="250" x2="110" y2="250" stroke="#333" stroke-width="2"/>
+  <!-- Pernas -->
+  <line x1="80" y1="280" x2="55" y2="320" stroke="#333" stroke-width="2"/>
+  <line x1="80" y1="280" x2="105" y2="320" stroke="#333" stroke-width="2"/>
+  <text x="80" y="345" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">Confeiteira</text>
+  <text x="80" y="360" text-anchor="middle" font-size="10" fill="#888">(Usuaria)</text>
+
+  <!-- Casos de Uso - Coluna 1 -->
+  <!-- UC1: Cadastrar Produto -->
+  <ellipse cx="310" cy="140" rx="115" ry="30" fill="white" stroke="#E91E8C" stroke-width="1.8"/>
+  <text x="310" y="135" text-anchor="middle" font-size="11" fill="#333">UC1: Cadastrar</text>
+  <text x="310" y="150" text-anchor="middle" font-size="11" fill="#333">Produto</text>
+
+  <!-- UC2: Visualizar Catalogo -->
+  <ellipse cx="310" cy="220" rx="115" ry="30" fill="white" stroke="#E91E8C" stroke-width="1.8"/>
+  <text x="310" y="215" text-anchor="middle" font-size="11" fill="#333">UC2: Visualizar</text>
+  <text x="310" y="230" text-anchor="middle" font-size="11" fill="#333">Catalogo de Produtos</text>
+
+  <!-- UC3: Cadastrar Ingrediente -->
+  <ellipse cx="310" cy="300" rx="115" ry="30" fill="white" stroke="#E91E8C" stroke-width="1.8"/>
+  <text x="310" y="295" text-anchor="middle" font-size="11" fill="#333">UC3: Cadastrar</text>
+  <text x="310" y="310" text-anchor="middle" font-size="11" fill="#333">Ingrediente</text>
+
+  <!-- UC4: Montar Ficha Tecnica -->
+  <ellipse cx="310" cy="380" rx="115" ry="30" fill="white" stroke="#A8D5BA" stroke-width="1.8"/>
+  <text x="310" y="375" text-anchor="middle" font-size="11" fill="#333">UC4: Montar Ficha</text>
+  <text x="310" y="390" text-anchor="middle" font-size="11" fill="#333">Tecnica de Receita</text>
+
+  <!-- UC5: Ver Custo de Producao -->
+  <ellipse cx="310" cy="460" rx="115" ry="30" fill="white" stroke="#A8D5BA" stroke-width="1.8"/>
+  <text x="310" y="455" text-anchor="middle" font-size="11" fill="#333">UC5: Visualizar Custo</text>
+  <text x="310" y="470" text-anchor="middle" font-size="11" fill="#333">de Producao (CPV)</text>
+
+  <!-- Casos de Uso - Coluna 2 -->
+  <!-- UC6: Simular Preco Sugerido -->
+  <ellipse cx="600" cy="140" rx="130" ry="30" fill="white" stroke="#A8D5BA" stroke-width="1.8"/>
+  <text x="600" y="135" text-anchor="middle" font-size="11" fill="#333">UC6: Simular Preco</text>
+  <text x="600" y="150" text-anchor="middle" font-size="11" fill="#333">Sugerido (Margem)</text>
+
+  <!-- UC7: Registrar Entrada Estoque -->
+  <ellipse cx="600" cy="220" rx="130" ry="30" fill="white" stroke="#E91E8C" stroke-width="1.8"/>
+  <text x="600" y="215" text-anchor="middle" font-size="11" fill="#333">UC7: Registrar Entrada</text>
+  <text x="600" y="230" text-anchor="middle" font-size="11" fill="#333">de Insumo (Estoque)</text>
+
+  <!-- UC8: Registrar Saida Estoque -->
+  <ellipse cx="600" cy="300" rx="130" ry="30" fill="white" stroke="#E91E8C" stroke-width="1.8"/>
+  <text x="600" y="295" text-anchor="middle" font-size="11" fill="#333">UC8: Registrar Saida</text>
+  <text x="600" y="310" text-anchor="middle" font-size="11" fill="#333">de Insumo (Estoque)</text>
+
+  <!-- UC9: Consultar Estoque -->
+  <ellipse cx="600" cy="380" rx="130" ry="30" fill="white" stroke="#E91E8C" stroke-width="1.8"/>
+  <text x="600" y="375" text-anchor="middle" font-size="11" fill="#333">UC9: Consultar Nivel</text>
+  <text x="600" y="390" text-anchor="middle" font-size="11" fill="#333">de Estoque</text>
+
+  <!-- UC10: Dashboard -->
+  <ellipse cx="600" cy="460" rx="130" ry="30" fill="white" stroke="#A8D5BA" stroke-width="1.8"/>
+  <text x="600" y="455" text-anchor="middle" font-size="11" fill="#333">UC10: Visualizar</text>
+  <text x="600" y="470" text-anchor="middle" font-size="11" fill="#333">Dashboard (KPIs)</text>
+
+  <!-- UC11: Excluir Ingrediente -->
+  <ellipse cx="310" cy="540" rx="115" ry="28" fill="white" stroke="#888" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="310" y="535" text-anchor="middle" font-size="10" fill="#888">UC11: Excluir</text>
+  <text x="310" y="550" text-anchor="middle" font-size="10" fill="#888">Ingrediente</text>
+
+  <!-- UC12: Alerta Estoque Baixo -->
+  <ellipse cx="600" cy="540" rx="130" ry="28" fill="white" stroke="#888" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="600" y="535" text-anchor="middle" font-size="10" fill="#888">UC12: Receber Alerta</text>
+  <text x="600" y="550" text-anchor="middle" font-size="10" fill="#888">de Estoque Baixo</text>
+
+  <!-- Linhas: Ator -> Casos de Uso -->
+  <line x1="102" y1="195" x2="195" y2="155" stroke="#555" stroke-width="1.3"/>
+  <line x1="102" y1="210" x2="195" y2="225" stroke="#555" stroke-width="1.3"/>
+  <line x1="102" y1="230" x2="195" y2="300" stroke="#555" stroke-width="1.3"/>
+  <line x1="102" y1="245" x2="195" y2="380" stroke="#555" stroke-width="1.3"/>
+  <line x1="102" y1="258" x2="195" y2="455" stroke="#555" stroke-width="1.3"/>
+  <line x1="102" y1="195" x2="470" y2="145" stroke="#555" stroke-width="1.3"/>
+  <line x1="102" y1="210" x2="470" y2="225" stroke="#555" stroke-width="1.3"/>
+  <line x1="102" y1="225" x2="470" y2="300" stroke="#555" stroke-width="1.3"/>
+  <line x1="102" y1="240" x2="470" y2="380" stroke="#555" stroke-width="1.3"/>
+  <line x1="102" y1="255" x2="470" y2="455" stroke="#555" stroke-width="1.3"/>
+
+  <!-- include: UC4 inclui UC2 (ver catalogo para escolher produto) -->
+  <line x1="310" y1="380" x2="310" y2="410" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="310" y1="410" x2="425" y2="410" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="425" y1="410" x2="425" y2="460" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="367" y="406" font-size="9" fill="#888" text-anchor="middle">include</text>
+
+  <!-- extend: UC12 extends UC9 -->
+  <line x1="600" y1="540" x2="600" y2="410" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="612" y="480" font-size="9" fill="#888">extend</text>
+
+  <!-- Legenda -->
+  <rect x="30" y="420" width="80" height="80" rx="6" fill="white" stroke="#ddd" stroke-width="1"/>
+  <ellipse cx="55" cy="445" rx="22" ry="12" fill="none" stroke="#E91E8C" stroke-width="1.5"/>
+  <text x="55" y="449" text-anchor="middle" font-size="8" fill="#E91E8C">Impl.</text>
+  <ellipse cx="55" cy="475" rx="22" ry="12" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="4,2"/>
+  <text x="55" y="479" text-anchor="middle" font-size="8" fill="#888">Futuro</text>
+  <text x="80" y="449" font-size="8" fill="#333"> Impl.</text>
+  <text x="80" y="479" font-size="8" fill="#888"> Futuro</text>
+  <text x="45" y="494" font-size="7" fill="#999">RA: 2500734</text>
+</svg>

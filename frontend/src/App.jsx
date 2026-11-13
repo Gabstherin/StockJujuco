@@ -4,6 +4,8 @@ import Home from './pages/Home'
 import Produtos from './pages/Produtos'
 import Ingredientes from './pages/Ingredientes'
 import Precificacao from './pages/Precificacao'
+import Estoque from './pages/Estoque'
+import Dashboard from './pages/Dashboard'
 
 export default function App() {
   return (
@@ -14,6 +16,8 @@ export default function App() {
         <Route path="/produtos" element={<Produtos />} />
         <Route path="/ingredientes" element={<Ingredientes />} />
         <Route path="/precificacao" element={<Precificacao />} />
+        <Route path="/estoque" element={<Estoque />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </>
   )

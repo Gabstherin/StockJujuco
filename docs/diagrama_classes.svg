@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" width="920" height="560" font-family="Arial, sans-serif">
+  <!-- Background -->
+  <rect width="920" height="560" fill="#FAFAFA" rx="12"/>
+  <text x="460" y="38" text-anchor="middle" font-size="20" font-weight="bold" fill="#333">Diagrama de Classes - StockJujuco</text>
+
+  <!-- Produto -->
+  <rect x="30" y="70" width="250" height="220" rx="8" fill="white" stroke="#E91E8C" stroke-width="2"/>
+  <rect x="30" y="70" width="250" height="38" rx="8" fill="#E91E8C"/>
+  <rect x="30" y="96" width="250" height="12" fill="#E91E8C"/>
+  <text x="155" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Produto</text>
+  <!-- atributos -->
+  <line x1="30" y1="108" x2="280" y2="108" stroke="#E91E8C" stroke-width="1.5"/>
+  <text x="40" y="126" font-size="11" fill="#333">+ id: Integer (PK)</text>
+  <text x="40" y="143" font-size="11" fill="#333">+ nome: String</text>
+  <text x="40" y="160" font-size="11" fill="#333">+ sabor: String</text>
+  <text x="40" y="177" font-size="11" fill="#333">+ categoria: String</text>
+  <text x="40" y="194" font-size="11" fill="#333">+ preco_venda: Float</text>
+  <text x="40" y="211" font-size="11" fill="#333">+ descricao: Text</text>
+  <text x="40" y="228" font-size="11" fill="#333">+ ativo: Boolean</text>
+  <text x="40" y="245" font-size="11" fill="#333">+ criado_em: DateTime</text>
+  <!-- metodos -->
+  <line x1="30" y1="256" x2="280" y2="256" stroke="#E91E8C" stroke-width="1.5"/>
+  <text x="40" y="274" font-size="11" fill="#555">+ calcular_custo(): Float</text>
+  <text x="40" y="289" font-size="11" fill="#555">+ calcular_margem(): Float</text>
+
+  <!-- ReceitaItem -->
+  <rect x="335" y="180" width="250" height="190" rx="8" fill="white" stroke="#A8D5BA" stroke-width="2"/>
+  <rect x="335" y="180" width="250" height="38" rx="8" fill="#A8D5BA"/>
+  <rect x="335" y="206" width="250" height="12" fill="#A8D5BA"/>
+  <text x="460" y="204" text-anchor="middle" font-size="13" font-weight="bold" fill="white">ReceitaItem</text>
+  <line x1="335" y1="218" x2="585" y2="218" stroke="#A8D5BA" stroke-width="1.5"/>
+  <text x="345" y="236" font-size="11" fill="#333">+ id: Integer (PK)</text>
+  <text x="345" y="253" font-size="11" fill="#333">+ produto_id: Integer (FK)</text>
+  <text x="345" y="270" font-size="11" fill="#333">+ ingrediente_id: Integer (FK)</text>
+  <text x="345" y="287" font-size="11" fill="#333">+ quantidade_utilizada: Float</text>
+  <line x1="335" y1="300" x2="585" y2="300" stroke="#A8D5BA" stroke-width="1.5"/>
+  <text x="345" y="318" font-size="11" fill="#555">+ custo_total_item(): Float</text>
+  <text x="345" y="335" font-size="11" fill="#555">+ obter_ingrediente(): Ing.</text>
+  <text x="345" y="358" font-size="10" fill="#888">tabela: receita_itens</text>
+
+  <!-- Ingrediente -->
+  <rect x="640" y="70" width="260" height="280" rx="8" fill="white" stroke="#E91E8C" stroke-width="2"/>
+  <rect x="640" y="70" width="260" height="38" rx="8" fill="#E91E8C"/>
+  <rect x="640" y="96" width="260" height="12" fill="#E91E8C"/>
+  <text x="770" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Ingrediente</text>
+  <line x1="640" y1="108" x2="900" y2="108" stroke="#E91E8C" stroke-width="1.5"/>
+  <text x="650" y="126" font-size="11" fill="#333">+ id: Integer (PK)</text>
+  <text x="650" y="143" font-size="11" fill="#333">+ nome: String</text>
+  <text x="650" y="160" font-size="11" fill="#333">+ unidade_medida: String</text>
+  <text x="650" y="177" font-size="11" fill="#333">+ preco_compra: Float</text>
+  <text x="650" y="194" font-size="11" fill="#333">+ quantidade_compra: Float</text>
+  <text x="650" y="211" font-size="11" fill="#333">+ custo_unitario: Float</text>
+  <text x="650" y="228" font-size="11" fill="#333">+ estoque_atual: Float</text>
+  <text x="650" y="245" font-size="11" fill="#333">+ estoque_minimo: Float</text>
+  <text x="650" y="262" font-size="11" fill="#333">+ criado_em: DateTime</text>
+  <line x1="640" y1="275" x2="900" y2="275" stroke="#E91E8C" stroke-width="1.5"/>
+  <text x="650" y="293" font-size="11" fill="#555">+ calcular_custo_unitario()</text>
+  <text x="650" y="310" font-size="11" fill="#555">+ verificar_estoque_baixo()</text>
+  <text x="650" y="327" font-size="11" fill="#555">+ registrar_movimentacao()</text>
+
+  <!-- MovimentacaoEstoque -->
+  <rect x="335" y="430" width="250" height="110" rx="8" fill="white" stroke="#888" stroke-width="1.5"/>
+  <rect x="335" y="430" width="250" height="34" rx="8" fill="#888"/>
+  <rect x="335" y="452" width="250" height="12" fill="#888"/>
+  <text x="460" y="451" text-anchor="middle" font-size="12" font-weight="bold" fill="white">MovimentacaoEstoque</text>
+  <line x1="335" y1="464" x2="585" y2="464" stroke="#888" stroke-width="1.5"/>
+  <text x="345" y="480" font-size="11" fill="#333">+ id: Integer (PK)</text>
+  <text x="345" y="496" font-size="11" fill="#333">+ ingrediente_id: Integer (FK)</text>
+  <text x="345" y="512" font-size="11" fill="#333">+ tipo: String (entrada/saida)</text>
+  <text x="345" y="528" font-size="11" fill="#333">+ quantidade: Float</text>
+
+  <!-- Associacoes -->
+  <!-- Produto 1 --* ReceitaItem -->
+  <line x1="280" y1="275" x2="335" y2="275" stroke="#555" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="284" y="264" font-size="10" fill="#333">1</text>
+  <text x="318" y="264" font-size="10" fill="#333">0..*</text>
+  <polygon points="335,275 323,270 323,280" fill="#555"/>
+
+  <!-- ReceitaItem *--1 Ingrediente -->
+  <line x1="585" y1="275" x2="640" y2="275" stroke="#555" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="590" y="264" font-size="10" fill="#333">0..*</text>
+  <text x="626" y="264" font-size="10" fill="#333">1</text>
+  <polygon points="640,275 628,270 628,280" fill="#555"/>
+
+  <!-- Ingrediente 1 --* MovimentacaoEstoque -->
+  <line x1="770" y1="350" x2="770" y2="430" stroke="#555" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="770" y1="430" x2="585" y2="480" stroke="#555" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="745" y="395" font-size="10" fill="#333">1</text>
+  <text x="590" y="472" font-size="10" fill="#333">0..*</text>
+
+  <!-- Legenda -->
+  <rect x="30" y="420" width="260" height="110" rx="6" fill="white" stroke="#ddd" stroke-width="1"/>
+  <text x="40" y="440" font-size="11" font-weight="bold" fill="#555">Legenda:</text>
+  <line x1="40" y1="456" x2="80" y2="456" stroke="#555" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="80,456 70,452 70,460" fill="#555"/>
+  <text x="86" y="460" font-size="10" fill="#555">Associacao (FK)</text>
+  <rect x="40" y="468" width="12" height="12" fill="#E91E8C" rx="2"/>
+  <text x="58" y="479" font-size="10" fill="#555">Entidade principal</text>
+  <rect x="40" y="484" width="12" height="12" fill="#A8D5BA" rx="2"/>
+  <text x="58" y="495" font-size="10" fill="#555">Entidade de relacionamento</text>
+  <text x="40" y="514" font-size="9" fill="#999">RA: 2500734 | Gabriela Andrade</text>
+  <text x="40" y="527" font-size="9" fill="#999">Faculdade Impacta Tecnologia, 2026</text>
+</svg>

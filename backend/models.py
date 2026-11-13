@@ -25,12 +25,15 @@ class Ingrediente(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     nome = Column(String(100), nullable=False)
     unidade_medida = Column(String(20), nullable=False)  # 'g', 'ml', 'un'
-    preco_compra = Column(Float, nullable=False)          # Preço pago na embalagem (R$)
+    preco_compra = Column(Float, nullable=False)          # Preco pago na embalagem (R$)
     quantidade_compra = Column(Float, nullable=False)     # Quantidade total da embalagem (ex: 1000g)
-    custo_unitario = Column(Float, nullable=False)        # Preço por unidade de medida (R$/g, R$/ml, etc)
+    custo_unitario = Column(Float, nullable=False)        # Preco por unidade de medida (R$/g, R$/ml, etc)
+    estoque_atual = Column(Float, default=0.0, nullable=False)    # Quantidade atual em estoque
+    estoque_minimo = Column(Float, default=100.0, nullable=False)  # Limite para alerta de estoque baixo
     criado_em = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     receita_itens = relationship("ReceitaItem", back_populates="ingrediente", cascade="all, delete-orphan")
+    movimentacoes = relationship("MovimentacaoEstoque", back_populates="ingrediente", cascade="all, delete-orphan")
 
 
 class ReceitaItem(Base):
@@ -44,3 +47,15 @@ class ReceitaItem(Base):
     produto = relationship("Produto", back_populates="receita_itens")
     ingrediente = relationship("Ingrediente", back_populates="receita_itens")
 
+
+class MovimentacaoEstoque(Base):
+    __tablename__ = "movimentacoes_estoque"
+
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
+    ingrediente_id = Column(Integer, ForeignKey("ingredientes.id"), nullable=False)
+    tipo = Column(String(10), nullable=False)         # 'entrada' ou 'saida'
+    quantidade = Column(Float, nullable=False)
+    observacao = Column(String(200), nullable=True)
+    criado_em = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+    ingrediente = relationship("Ingrediente", back_populates="movimentacoes")

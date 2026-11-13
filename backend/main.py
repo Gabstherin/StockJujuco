@@ -5,18 +5,20 @@ from typing import List
 from datetime import datetime
 
 from database import get_db, init_db
-from models import Produto, Ingrediente, ReceitaItem
+from models import Produto, Ingrediente, ReceitaItem, MovimentacaoEstoque
 from schemas import (
     ProdutoCreate, ProdutoResponse,
     IngredienteCreate, IngredienteResponse,
     ReceitaItemCreate, ReceitaItemResponse,
-    PrecificacaoResponse, PrecoSugerido
+    PrecificacaoResponse, PrecoSugerido,
+    MovimentacaoCreate, MovimentacaoResponse,
+    EstoqueItemResponse, DashboardResponse
 )
 
 app = FastAPI(
     title="StockJujuco API",
-    description="API de controle de produtos, receitas, custos e precificacao da Juju Co. Confeitaria Artesanal",
-    version="2.0.0",
+    description="API de controle de produtos, receitas, custos, precificacao e estoque da Juju Co. Confeitaria Artesanal",
+    version="3.0.0",
 )
 
 app.add_middleware(
@@ -52,8 +54,8 @@ def root():
     return {
         "status": "ok",
         "app": "StockJujuco API",
-        "version": "2.0.0",
-        "modulos": ["produtos", "ingredientes", "receitas", "precificacao"]
+        "version": "3.0.0",
+        "modulos": ["produtos", "ingredientes", "receitas", "precificacao", "estoque", "dashboard"]
     }
 
 
@@ -66,7 +68,7 @@ def listar_produtos(db: Session = Depends(get_db)):
         custo = calcular_custo_produto(p)
         lucro = round(p.preco_venda - custo, 2)
         margem = round((lucro / p.preco_venda * 100), 1) if p.preco_venda > 0 else 0.0
-        
+
         resultado.append(ProdutoResponse(
             id=p.id,
             nome=p.nome,
@@ -107,7 +109,7 @@ def cadastrar_produto(produto: ProdutoCreate, db: Session = Depends(get_db)):
 
 @app.get("/ingredientes", response_model=List[IngredienteResponse], summary="Listar ingredientes")
 def listar_ingredientes(db: Session = Depends(get_db)):
-    """Lista todos os ingredientes cadastrados com seus custos unitarios."""
+    """Lista todos os ingredientes cadastrados com seus custos unitarios e estoque."""
     return db.query(Ingrediente).order_by(Ingrediente.nome.asc()).all()
 
 
@@ -121,6 +123,8 @@ def cadastrar_ingrediente(ingrediente: IngredienteCreate, db: Session = Depends(
         preco_compra=ingrediente.preco_compra,
         quantidade_compra=ingrediente.quantidade_compra,
         custo_unitario=custo_unitario,
+        estoque_atual=0.0,
+        estoque_minimo=ingrediente.estoque_minimo,
         criado_em=datetime.utcnow(),
     )
     db.add(novo)
@@ -320,3 +324,168 @@ def resumo_precificacao(db: Session = Depends(get_db)):
         })
     return lista
 
+
+# ==========================================
+# 5. ROTAS DE ESTOQUE (Entrega Final)
+# ==========================================
+
+@app.get("/estoque", response_model=List[EstoqueItemResponse], summary="Consultar estoque atual")
+def consultar_estoque(db: Session = Depends(get_db)):
+    """Retorna o estoque atual de todos os ingredientes com status de nivel."""
+    ingredientes = db.query(Ingrediente).order_by(Ingrediente.nome.asc()).all()
+    resultado = []
+    for ing in ingredientes:
+        if ing.estoque_atual <= 0:
+            status = "critico"
+        elif ing.estoque_atual < ing.estoque_minimo:
+            status = "baixo"
+        else:
+            status = "ok"
+        resultado.append(EstoqueItemResponse(
+            ingrediente_id=ing.id,
+            nome=ing.nome,
+            unidade_medida=ing.unidade_medida,
+            estoque_atual=ing.estoque_atual,
+            estoque_minimo=ing.estoque_minimo,
+            status=status
+        ))
+    return resultado
+
+
+@app.post("/estoque/entrada", response_model=MovimentacaoResponse, status_code=201, summary="Registrar entrada de insumo")
+def entrada_estoque(dados: MovimentacaoCreate, db: Session = Depends(get_db)):
+    """Registra entrada de insumo no estoque e atualiza a quantidade atual do ingrediente."""
+    ingrediente = db.query(Ingrediente).filter(Ingrediente.id == dados.ingrediente_id).first()
+    if not ingrediente:
+        raise HTTPException(status_code=404, detail="Ingrediente nao encontrado")
+
+    # Registra a movimentacao
+    mov = MovimentacaoEstoque(
+        ingrediente_id=dados.ingrediente_id,
+        tipo="entrada",
+        quantidade=dados.quantidade,
+        observacao=dados.observacao,
+        criado_em=datetime.utcnow()
+    )
+    db.add(mov)
+
+    # Atualiza o estoque atual
+    ingrediente.estoque_atual = round(ingrediente.estoque_atual + dados.quantidade, 3)
+    db.commit()
+    db.refresh(mov)
+
+    return MovimentacaoResponse(
+        id=mov.id,
+        ingrediente_id=ingrediente.id,
+        ingrediente_nome=ingrediente.nome,
+        tipo=mov.tipo,
+        quantidade=mov.quantidade,
+        observacao=mov.observacao,
+        criado_em=mov.criado_em
+    )
+
+
+@app.post("/estoque/saida", response_model=MovimentacaoResponse, status_code=201, summary="Registrar saida de insumo")
+def saida_estoque(dados: MovimentacaoCreate, db: Session = Depends(get_db)):
+    """Registra saida de insumo do estoque. Nao permite estoque negativo."""
+    ingrediente = db.query(Ingrediente).filter(Ingrediente.id == dados.ingrediente_id).first()
+    if not ingrediente:
+        raise HTTPException(status_code=404, detail="Ingrediente nao encontrado")
+
+    if ingrediente.estoque_atual < dados.quantidade:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Estoque insuficiente. Disponivel: {ingrediente.estoque_atual} {ingrediente.unidade_medida}"
+        )
+
+    # Registra a movimentacao
+    mov = MovimentacaoEstoque(
+        ingrediente_id=dados.ingrediente_id,
+        tipo="saida",
+        quantidade=dados.quantidade,
+        observacao=dados.observacao,
+        criado_em=datetime.utcnow()
+    )
+    db.add(mov)
+
+    # Atualiza o estoque atual
+    ingrediente.estoque_atual = round(ingrediente.estoque_atual - dados.quantidade, 3)
+    db.commit()
+    db.refresh(mov)
+
+    return MovimentacaoResponse(
+        id=mov.id,
+        ingrediente_id=ingrediente.id,
+        ingrediente_nome=ingrediente.nome,
+        tipo=mov.tipo,
+        quantidade=mov.quantidade,
+        observacao=mov.observacao,
+        criado_em=mov.criado_em
+    )
+
+
+@app.get("/estoque/movimentacoes", response_model=List[MovimentacaoResponse], summary="Historico de movimentacoes")
+def historico_movimentacoes(db: Session = Depends(get_db)):
+    """Retorna o historico completo de entradas e saidas do estoque."""
+    movs = db.query(MovimentacaoEstoque).order_by(MovimentacaoEstoque.criado_em.desc()).all()
+    resultado = []
+    for m in movs:
+        resultado.append(MovimentacaoResponse(
+            id=m.id,
+            ingrediente_id=m.ingrediente_id,
+            ingrediente_nome=m.ingrediente.nome,
+            tipo=m.tipo,
+            quantidade=m.quantidade,
+            observacao=m.observacao,
+            criado_em=m.criado_em
+        ))
+    return resultado
+
+
+# ==========================================
+# 6. DASHBOARD CONSOLIDADO (Entrega Final)
+# ==========================================
+
+@app.get("/dashboard", response_model=DashboardResponse, summary="Dashboard consolidado de KPIs")
+def dashboard(db: Session = Depends(get_db)):
+    """
+    Retorna os principais indicadores do negocio:
+    total de produtos, custos medios, margens, estoque e receita potencial.
+    """
+    produtos_ativos = db.query(Produto).filter(Produto.ativo == True).all()
+    total_produtos = len(produtos_ativos)
+    total_ingredientes = db.query(Ingrediente).count()
+
+    custos = []
+    margens = []
+    receita_potencial = 0.0
+    lucro_potencial = 0.0
+
+    for p in produtos_ativos:
+        custo = calcular_custo_produto(p)
+        lucro = round(p.preco_venda - custo, 2)
+        margem = round((lucro / p.preco_venda * 100), 1) if p.preco_venda > 0 else 0.0
+        custos.append(custo)
+        margens.append(margem)
+        receita_potencial += p.preco_venda
+        lucro_potencial += lucro
+
+    custo_medio = round(sum(custos) / len(custos), 2) if custos else 0.0
+    margem_media = round(sum(margens) / len(margens), 1) if margens else 0.0
+
+    # Conta ingredientes com estoque baixo ou critico
+    ingredientes_todos = db.query(Ingrediente).all()
+    estoque_baixo = sum(
+        1 for ing in ingredientes_todos
+        if ing.estoque_atual < ing.estoque_minimo
+    )
+
+    return DashboardResponse(
+        total_produtos_ativos=total_produtos,
+        custo_medio_producao=custo_medio,
+        margem_media_percentual=margem_media,
+        total_ingredientes=total_ingredientes,
+        ingredientes_estoque_baixo=estoque_baixo,
+        receita_potencial_total=round(receita_potencial, 2),
+        lucro_potencial_total=round(lucro_potencial, 2)
+    )

@@ -23,7 +23,7 @@ def get_db():
 
 
 def init_db():
-    from models import Produto, Ingrediente, ReceitaItem
+    from models import Produto, Ingrediente, ReceitaItem, MovimentacaoEstoque
     Base.metadata.create_all(bind=engine)
 
     db = SessionLocal()
@@ -63,7 +63,7 @@ def init_db():
             db.commit()
             print("Produtos iniciais criados.")
 
-        # 2. Seed de Ingredientes (AC02)
+        # 2. Seed de Ingredientes (AC02) com estoque inicial
         if db.query(Ingrediente).count() == 0:
             ingredientes_iniciais = [
                 Ingrediente(
@@ -72,6 +72,8 @@ def init_db():
                     preco_compra=48.00,
                     quantidade_compra=1000.0,
                     custo_unitario=round(48.00 / 1000.0, 4),
+                    estoque_atual=800.0,
+                    estoque_minimo=200.0,
                     criado_em=datetime.utcnow(),
                 ),
                 Ingrediente(
@@ -80,6 +82,8 @@ def init_db():
                     preco_compra=22.00,
                     quantidade_compra=500.0,
                     custo_unitario=round(22.00 / 500.0, 4),
+                    estoque_atual=350.0,
+                    estoque_minimo=150.0,
                     criado_em=datetime.utcnow(),
                 ),
                 Ingrediente(
@@ -88,6 +92,8 @@ def init_db():
                     preco_compra=5.50,
                     quantidade_compra=1000.0,
                     custo_unitario=round(5.50 / 1000.0, 4),
+                    estoque_atual=600.0,
+                    estoque_minimo=250.0,
                     criado_em=datetime.utcnow(),
                 ),
                 Ingrediente(
@@ -96,6 +102,8 @@ def init_db():
                     preco_compra=14.00,
                     quantidade_compra=12.0,
                     custo_unitario=round(14.00 / 12.0, 4),
+                    estoque_atual=8.0,
+                    estoque_minimo=6.0,
                     criado_em=datetime.utcnow(),
                 ),
                 Ingrediente(
@@ -104,6 +112,8 @@ def init_db():
                     preco_compra=6.00,
                     quantidade_compra=1000.0,
                     custo_unitario=round(6.00 / 1000.0, 4),
+                    estoque_atual=90.0,
+                    estoque_minimo=200.0,
                     criado_em=datetime.utcnow(),
                 ),
                 Ingrediente(
@@ -112,6 +122,8 @@ def init_db():
                     preco_compra=24.00,
                     quantidade_compra=400.0,
                     custo_unitario=round(24.00 / 400.0, 4),
+                    estoque_atual=250.0,
+                    estoque_minimo=100.0,
                     criado_em=datetime.utcnow(),
                 ),
                 Ingrediente(
@@ -120,6 +132,8 @@ def init_db():
                     preco_compra=12.00,
                     quantidade_compra=500.0,
                     custo_unitario=round(12.00 / 500.0, 4),
+                    estoque_atual=180.0,
+                    estoque_minimo=100.0,
                     criado_em=datetime.utcnow(),
                 ),
             ]

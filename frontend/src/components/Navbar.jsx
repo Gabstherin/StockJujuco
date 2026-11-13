@@ -32,6 +32,16 @@ export default function Navbar() {
             Custos & Precificação
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/estoque" className={({ isActive }) => isActive ? 'active' : ''}>
+            Estoque
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
+            Dashboard
+          </NavLink>
+        </li>
       </ul>
     </nav>
   )

@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List, Dict
+from typing import Optional, List
 from datetime import datetime
 
 
@@ -35,6 +35,7 @@ class IngredienteCreate(BaseModel):
     unidade_medida: str = Field(..., description="Unidade: g, ml, un")
     preco_compra: float = Field(..., gt=0, description="Preco total pago na embalagem")
     quantidade_compra: float = Field(..., gt=0, description="Quantidade da embalagem comprada")
+    estoque_minimo: float = Field(100.0, ge=0, description="Quantidade minima para alerta de estoque baixo")
 
 
 class IngredienteResponse(BaseModel):
@@ -44,6 +45,8 @@ class IngredienteResponse(BaseModel):
     preco_compra: float
     quantidade_compra: float
     custo_unitario: float
+    estoque_atual: float
+    estoque_minimo: float
     criado_em: datetime
 
     model_config = {"from_attributes": True}
@@ -90,3 +93,45 @@ class PrecificacaoResponse(BaseModel):
     itens_receita: List[ReceitaItemResponse]
     precos_sugeridos: List[PrecoSugerido]
 
+
+# --- ESTOQUE (Entrega Final) ---
+
+class MovimentacaoCreate(BaseModel):
+    ingrediente_id: int = Field(..., description="ID do ingrediente")
+    quantidade: float = Field(..., gt=0, description="Quantidade a movimentar (sempre positivo)")
+    observacao: Optional[str] = Field(None, max_length=200, description="Observacao opcional")
+
+
+class MovimentacaoResponse(BaseModel):
+    id: int
+    ingrediente_id: int
+    ingrediente_nome: str
+    tipo: str
+    quantidade: float
+    observacao: Optional[str]
+    criado_em: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class EstoqueItemResponse(BaseModel):
+    ingrediente_id: int
+    nome: str
+    unidade_medida: str
+    estoque_atual: float
+    estoque_minimo: float
+    status: str  # 'ok', 'baixo', 'critico'
+
+    model_config = {"from_attributes": True}
+
+
+# --- DASHBOARD (Entrega Final) ---
+
+class DashboardResponse(BaseModel):
+    total_produtos_ativos: int
+    custo_medio_producao: float
+    margem_media_percentual: float
+    total_ingredientes: int
+    ingredientes_estoque_baixo: int
+    receita_potencial_total: float
+    lucro_potencial_total: float
