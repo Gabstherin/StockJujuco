@@ -1,8 +1,10 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from typing import List
 from datetime import datetime
+import os
 
 from database import get_db, init_db
 from models import Produto, Ingrediente, ReceitaItem, MovimentacaoEstoque
@@ -46,15 +48,32 @@ def calcular_custo_produto(produto: Produto) -> float:
 
 
 # ==========================================
+# 0. ROTAS DE INTERFACE WEB (DEMO)
+# ==========================================
+
+@app.get("/demo", response_class=FileResponse, summary="Interface Web de Demonstracao")
+def pagina_demo():
+    """Serve a interface web completa do sistema StockJujuco."""
+    caminho = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "demo", "index.html"))
+    return FileResponse(caminho)
+
+
+# ==========================================
 # 1. ROTAS DE PRODUTOS (AC01 + enriquecido AC03)
 # ==========================================
 
-@app.get("/", summary="Health check")
-def root():
+@app.get("/", summary="Health check e rota raiz")
+def root(request: Request):
+    """Retorna status da API ou redireciona navegadores para a interface /demo."""
+    accept = request.headers.get("accept", "")
+    if "text/html" in accept:
+        caminho = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "demo", "index.html"))
+        return FileResponse(caminho)
     return {
         "status": "ok",
         "app": "StockJujuco API",
         "version": "3.0.0",
+        "demo_url": "/demo",
         "modulos": ["produtos", "ingredientes", "receitas", "precificacao", "estoque", "dashboard"]
     }
 
